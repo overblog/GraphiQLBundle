@@ -1,0 +1,41 @@
+{
+    "name": "overblog/graphiql-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony GraphiQLBundle makes possible to render the UI into your symfony project",
+    "keywords": [
+        "GraphQL", "GraphiQL"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Renato Mefi",
+            "email": "renato@mefi.in"
+        },
+        {
+            "name": "Overblog",
+            "homepage": "http://www.over-blog.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3",
+        "symfony/twig-bridge": "~2.8|~3.3|~4.0",
+        "symfony/http-foundation": "~2.8|~3.3|~4.0"
+    },
+    "require-dev": {
+        "symfony/config": "~3.4|~4.0",
+        "symfony/dependency-injection": "~3.4|~4.0",
+        "symfony/web-profiler-bundle": "~3.4|~4.0"
+    },
+    "autoload": {
+        "psr-4": { "Overblog\\Bundle\\GraphiQLBundle\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.0-dev"
+        }
+    }
+}
