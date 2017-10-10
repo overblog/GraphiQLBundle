@@ -18,29 +18,23 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('debug');
+        $rootNode = $treeBuilder->root('overblog_graphql');
 
         $rootNode
+            ->addDefaultsIfNotSet()
             ->children()
-                ->integerNode('max_items')
-                    ->info('Max number of displayed items past the first level, -1 means no limit')
-                    ->min(-1)
-                    ->defaultValue(2500)
+                ->scalarNode('template')
+                    ->info('In case you need it\'s possible to replace GraphiQL twig template')
+                    ->defaultValue('@OverblogGraphQL/GraphiQL/index.html.twig')
                 ->end()
-                ->integerNode('min_depth')
-                    ->info('Minimum tree depth to clone all the items, 1 is default')
-                    ->min(0)
-                    ->defaultValue(1)
-                ->end()
-                ->integerNode('max_string_length')
-                    ->info('Max length of displayed strings, -1 means no limit')
-                    ->min(-1)
-                    ->defaultValue(-1)
-                ->end()
-                ->scalarNode('dump_destination')
-                    ->info('A stream URL where dumps should be written to')
-                    ->example('php://stderr')
-                    ->defaultNull()
+                ->arrayNode('javascript_libraries')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('graphiql')->defaultValue('0.11')->end()
+                        ->scalarNode('react')->defaultValue('15.6')->end()
+                        ->scalarNode('fetch')->defaultValue('2.0')->end()
+                        ->enumNode('relay')->values(['modern', 'classic'])->defaultValue('classic')->end()
+                    ->end()
                 ->end()
             ->end()
         ;
