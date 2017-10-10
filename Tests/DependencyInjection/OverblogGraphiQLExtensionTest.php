@@ -25,15 +25,9 @@ class OverblogGraphiQLExtensionTest extends TestCase
         $container->loadFromExtension('overblog_graphiql');
         $this->compileContainer($container);
 
-        $expectedTags = array(
-            array(
-                'id' => 'dump',
-                'template' => '@Debug/Profiler/dump.html.twig',
-                'priority' => 240,
-            ),
-        );
+        $definition = $container->getDefinition('overblog_graphiql.controller');
 
-        $this->assertSame($expectedTags, $container->getDefinition('overblog_graphiql.controller')->getTag('data_collector'));
+        $this->assertEquals([], $definition->getArguments());
     }
 
     private function createContainer()
