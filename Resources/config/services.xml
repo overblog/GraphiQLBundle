@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults public="false" />
+
+        <service id="overblog_graphiql.controller" class="Overblog\GraphiQLBundle\Controller\GraphiQLController">
+            <argument type="service" id="" />
+            <argument type="service" id="var_dumper.html_dumper" />
+        </service>
+    </services>
+</container>
