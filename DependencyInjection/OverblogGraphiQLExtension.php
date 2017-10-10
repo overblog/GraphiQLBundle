@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Overblog\GraphiQLBundle;
+namespace Overblog\GraphiQLBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\Reference;
  *
  * @author Nicolas Grekas <p@tchwork.com>
  */
-class GraphiQLExtension extends Extension
+class OverblogGraphiQLExtension extends Extension
 {
     /**
      * {@inheritdoc}
