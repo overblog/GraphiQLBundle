@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
-class GraphiQLExtensionTest extends TestCase
+class OverblogGraphiQLExtensionTest extends TestCase
 {
     public function testLoadWithoutConfiguration()
     {
@@ -33,7 +33,7 @@ class GraphiQLExtensionTest extends TestCase
             ),
         );
 
-        $this->assertSame($expectedTags, $container->getDefinition('data_collector.dump')->getTag('data_collector'));
+        $this->assertSame($expectedTags, $container->getDefinition('overblog_graphiql.controller')->getTag('data_collector'));
     }
 
     private function createContainer()

@@ -27,19 +27,15 @@ class OverblogGraphiQLExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        $container->getDefinition('var_dumper.cloner')
-            ->addMethodCall('setMaxItems', array($config['max_items']))
-            ->addMethodCall('setMinDepth', array($config['min_depth']))
-            ->addMethodCall('setMaxString', array($config['max_string_length']));
-
-        if (null !== $config['dump_destination']) {
-            $container->getDefinition('var_dumper.cli_dumper')
-                ->replaceArgument(0, $config['dump_destination'])
-            ;
-            $container->getDefinition('data_collector.dump')
-                ->replaceArgument(4, new Reference('var_dumper.cli_dumper'))
-            ;
+        foreach ($config['javascript_libraries'] as $key => $version) {
+            $container->setParameter(sprintf('%s.versions.%s', $this->getAlias(), $key), $version);
         }
+
+    }
+
+    public function getAlias()
+    {
+        return 'overblog_graphiql';
     }
 
     /**
