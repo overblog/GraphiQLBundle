@@ -11,7 +11,6 @@
 
 namespace Overblog\GraphQLBundle\Tests\Controller;
 
-
 use Overblog\GraphiQLBundle\Tests\TestCase;
 
 class GraphiQLControllerTest extends TestCase

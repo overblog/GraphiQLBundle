@@ -64,10 +64,12 @@ final class TestKernel extends Kernel
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        if ($this->testCase) {
-            $loader->load(sprintf(__DIR__.'/config/%s/config.yml', $this->testCase));
-        } else {
-            $loader->load(__DIR__.'/config/config.yml');
-        }
+        $loader->load(function ($container) {
+            $container->loadFromExtension('framework', [
+                'secret' => 'test',
+                'test'=> true,
+                'templating' => ['engine' => ['twig']]
+            ]);
+        });
     }
 }

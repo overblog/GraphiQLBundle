@@ -13,6 +13,7 @@ namespace Overblog\GraphiQLBundle\Tests\DependencyInjection;
 
 use Overblog\GraphiQLBundle\DependencyInjection\OverblogGraphiQLExtension;
 use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\TwigBundle\DependencyInjection\TwigExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
