@@ -15,6 +15,7 @@ use Overblog\GraphiQLBundle\OverblogGraphiQLBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 
 final class TestKernel extends Kernel
@@ -64,11 +65,12 @@ final class TestKernel extends Kernel
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(function ($container) {
+        $loader->load(function (ContainerBuilder $container) {
             $container->loadFromExtension('framework', [
                 'secret' => 'test',
                 'test'=> true,
-                'templating' => ['engine' => ['twig']]
+                'templating' => ['engine' => ['twig']],
+                'router' => ['resource' => '%kernel.root_dir%/../../Resources/config/routing.xml']
             ]);
         });
     }
