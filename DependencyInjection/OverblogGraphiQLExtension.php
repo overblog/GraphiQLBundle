@@ -1,12 +1,15 @@
 <?php
 
-
 namespace Overblog\GraphiQLBundle\DependencyInjection;
 
+use Overblog\GraphiQLBundle\Config\GraphiQLViewConfig;
+use Overblog\GraphiQLBundle\Config\GraphiQLViewJavascriptLibraries;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * DebugExtension.
@@ -26,10 +29,21 @@ class OverblogGraphiQLExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        foreach ($config['javascript_libraries'] as $key => $version) {
-            $container->setParameter(sprintf('%s.versions.%s', $this->getAlias(), $key), $version);
-        }
+        $javaScriptLibraries = new GraphiQLViewJavascriptLibraries(
+            $config['javascript_libraries']['graphiql'],
+            $config['javascript_libraries']['react'],
+            $config['javascript_libraries']['fetch']
+        );
 
+        $graphiQLViewConfigDefinition = new Definition(
+            GraphiQLViewConfig::class,
+            [
+                $javaScriptLibraries,
+                $config['template'],
+            ]
+        );
+
+        $container->setDefinition('overblog_graphiql.view.config', $graphiQLViewConfigDefinition);
     }
 
     public function getAlias()

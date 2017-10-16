@@ -1,16 +1,8 @@
 <?php
 
-/*
- * This file is part of the OverblogGraphiQLBundle package.
- *
- * (c) Overblog <http://github.com/overblog/>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Overblog\GraphiQLBundle\Controller;
 
+use Overblog\GraphiQLBundle\Config\GraphiQLViewConfig;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment as TwigEnvironment;
@@ -28,36 +20,36 @@ class GraphiQLController
     private $twig;
 
     /**
-     * @var String
+     * @var GraphiQLViewConfig
      */
-    private $twigGraphiqlTemplate;
+    private $viewConfig;
 
     public function __construct(
         RouterInterface $router,
         TwigEnvironment $twig,
-        $twigGraphiqlTemplate
+        GraphiQLViewConfig $viewConfig
     ) {
         $this->router = $router;
         $this->twig = $twig;
-        $this->twigGraphiqlTemplate = $twigGraphiqlTemplate;
+        $this->viewConfig = $viewConfig;
     }
 
     public function indexAction($schemaName = null)
     {
         if (null === $schemaName) {
-            $endpoint = $this->router->generate('overblog_graphql_endpoint');
+            $endpoint = $this->router->generate('overblog_graphiql_endpoint');
         } else {
-            $endpoint = $this->router->generate('overblog_graphql_multiple_endpoint', ['schemaName' => $schemaName]);
+            $endpoint = $this->router->generate('overblog_graphiql_endpoint_multiple', ['schemaName' => $schemaName]);
         }
 
         return Response::create($this->twig->render(
-            $this->twigGraphiqlTemplate,
+            $this->viewConfig->getTemplate(),
             [
                 'endpoint' => $endpoint,
                 'versions' => [
-                    'graphiql' => $this->getParameter('overblog_graphql.versions.graphiql'),
-                    'react' => $this->getParameter('overblog_graphql.versions.react'),
-                    'fetch' => $this->getParameter('overblog_graphql.versions.fetch'),
+                    'graphiql' => $this->viewConfig->getJavascriptLibraries()->getGraphiQLVersion(),
+                    'react' => $this->viewConfig->getJavascriptLibraries()->getReactVersion(),
+                    'fetch' => $this->viewConfig->getJavascriptLibraries()->getFetchVersion(),
                 ],
             ]
         ));

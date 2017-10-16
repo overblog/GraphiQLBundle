@@ -6,9 +6,18 @@
     http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="overblog_graphiql.controller" class="Overblog\GraphiQLBundle\Controller\GraphiQLController" autowire="false">
+        <service id="overblog_graphiql.controller"
+                 class="Overblog\GraphiQLBundle\Controller\GraphiQLController"
+                 autowire="false" public="true">
             <argument type="service" id="router" />
             <argument type="service" id="twig" />
+            <argument type="service" id="overblog_graphiql.view.config" />
         </service>
+        <!--<service id="overblog_graphiql.view.config"-->
+                <!--class="Overblog\GraphiQLBundle\Config\GraphiQLViewConfig"-->
+                <!--autowire="false" public="true">-->
+            <!--<argument key="javascriptLibraries" />-->
+            <!--<argument type="string" key="template" />-->
+        <!--</service>-->
     </services>
 </container>
