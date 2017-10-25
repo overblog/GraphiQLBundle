@@ -25,7 +25,7 @@ final class OverblogGraphQLBundleEndpointWiringPass implements CompilerPassInter
             [
                 'default' => 'overblog_graphiql_endpoint',
                 'second' => 'overblog_graphiql_endpoint',
-            ]
+            ],
         ]);
     }
 }

@@ -35,12 +35,12 @@ final class TestKernel extends Kernel
 
     public function getCacheDir()
     {
-        return sys_get_temp_dir().'/OverblogGraphQLBundle/'.Kernel::VERSION.'/'.$this->testCase.'/cache/'.$this->environment;
+        return sys_get_temp_dir().'/OverblogGraphQLBundle/'.__DIR__.'/'.Kernel::VERSION.'/'.$this->testCase.'/cache/'.$this->environment;
     }
 
     public function getLogDir()
     {
-        return sys_get_temp_dir().'/OverblogGraphQLBundle/'.Kernel::VERSION.'/'.$this->testCase.'/logs';
+        return sys_get_temp_dir().'/OverblogGraphQLBundle/'.__DIR__.'/'.Kernel::VERSION.'/'.$this->testCase.'/logs';
     }
 
     public function getRootDir()
@@ -61,11 +61,12 @@ final class TestKernel extends Kernel
         $loader->load(function (ContainerBuilder $container) {
             $container->loadFromExtension('framework', [
                 'secret' => 'test',
-                'test'=> true,
+                'test' => true,
                 'templating' => ['engine' => ['twig']],
+                'assets' => ['enabled' => false],
                 'router' => [
-                    'resource' => '%kernel.root_dir%/Resources/config/routing.xml'
-                ]
+                    'resource' => '%kernel.root_dir%/Resources/config/routing.xml',
+                ],
             ]);
         });
     }

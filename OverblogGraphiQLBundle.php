@@ -11,7 +11,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 final class OverblogGraphiQLBundle extends Bundle
 {
-
     public function build(ContainerBuilder $container)
     {
         parent::build($container);

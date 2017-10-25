@@ -61,6 +61,7 @@ final class TestKernel extends Kernel
                 'secret' => 'test',
                 'test' => true,
                 'templating' => ['engine' => ['twig']],
+                'assets' => ['enabled' => false],
                 'router' => ['resource' => '%kernel.root_dir%/../../Resources/config/routing.xml'],
             ]);
         });

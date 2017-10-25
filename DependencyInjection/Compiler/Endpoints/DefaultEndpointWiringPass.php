@@ -13,7 +13,7 @@ class DefaultEndpointWiringPass implements CompilerPassInterface
     {
         $endpointDefinition = $container->getDefinition('overblog_graphiql.controller.graphql.endpoint');
 
-        if ($endpointDefinition->getClass() !== GraphiQLControllerEndpoint::class) {
+        if (GraphiQLControllerEndpoint::class !== $endpointDefinition->getClass()) {
             return;
         }
 

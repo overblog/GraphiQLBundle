@@ -36,7 +36,7 @@ class GraphiQLController
 
     public function indexAction($schemaName = null)
     {
-        $endpoint = $schemaName === null ? $this->graphQLEndpoint->getDefault() : $this->graphQLEndpoint->getBySchema($schemaName);
+        $endpoint = null === $schemaName ? $this->graphQLEndpoint->getDefault() : $this->graphQLEndpoint->getBySchema($schemaName);
 
         return Response::create($this->twig->render(
             $this->viewConfig->getTemplate(),

@@ -8,7 +8,7 @@ final class RootResolver implements GraphiQLControllerEndpoint
 {
     public function getBySchema($name)
     {
-        if ($name === 'default') {
+        if ('default' === $name) {
             return $this->getDefault();
         }
 
