@@ -9,8 +9,10 @@
         <service id="overblog_graphiql.view.config"
                  class="Overblog\GraphiQLBundle\Config\GraphiQLViewConfig"
                  autowire="false" public="true">
-            <factory class="Overblog\GraphiQLBundle\Config\GraphiQLViewConfig" method="createFromArrayConfiguration" />
-            <argument>%overblog_graphiql.config%</argument>
+        </service>
+        <service id="overblog_graphiql.view.config.javascript_libraries"
+                 class="Overblog\GraphiQLBundle\Config\GraphiQLViewJavascriptLibraries"
+                 autowire="false" public="true">
         </service>
         <service id="overblog_graphiql.controller"
                  class="Overblog\GraphiQLBundle\Controller\GraphiQLController"

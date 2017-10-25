@@ -16,17 +16,6 @@ class GraphiQLViewConfig
         $this->template = $template;
     }
 
-    public static function createFromArrayConfiguration($config)
-    {
-        $javaScriptLibraries = new GraphiQLViewJavascriptLibraries(
-            $config['javascript_libraries']['graphiql'],
-            $config['javascript_libraries']['react'],
-            $config['javascript_libraries']['fetch']
-        );
-
-        return new self($javaScriptLibraries, $config['template']);
-    }
-
     /**
      * @return GraphiQLViewJavascriptLibraries
      */

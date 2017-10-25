@@ -2,10 +2,13 @@
 
 namespace Overblog\GraphiQLBundle\Tests\DependencyInjection;
 
+use Overblog\GraphiQLBundle\Config\GraphiQLViewConfig;
+use Overblog\GraphiQLBundle\Config\GraphiQLViewJavascriptLibraries;
 use Overblog\GraphiQLBundle\DependencyInjection\OverblogGraphiQLExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use Symfony\Component\DependencyInjection\Reference;
 
 class OverblogGraphiQLExtensionTest extends TestCase
 {
@@ -16,18 +19,23 @@ class OverblogGraphiQLExtensionTest extends TestCase
         $container->loadFromExtension('overblog_graphiql');
         $this->compileContainer($container);
 
-        $bundleConfig = $container->getParameter('overblog_graphiql.config');
+        $jsLibraries = $container->get('overblog_graphiql.view.config.javascript_libraries');
 
-        $this->assertEquals([
-            'template' => '@OverblogGraphiQL/GraphiQL/index.html.twig',
-            'javascript_libraries' =>
-                [
-                    'graphiql' => '0.11',
-                    'react' => '15.6',
-                    'fetch' => '2.0',
-                    'relay' => 'classic',
-                ],
-        ], $bundleConfig);
+        $this->assertInstanceOf(GraphiQLViewJavascriptLibraries::class, $jsLibraries);
+        $this->assertSame('2.0', $jsLibraries->getFetchVersion());
+        $this->assertSame('15.6', $jsLibraries->getReactVersion());
+        $this->assertSame('0.11', $jsLibraries->getGraphiQLVersion());
+
+        $viewConfig = $container->get('overblog_graphiql.view.config');
+
+        $this->assertInstanceOf(GraphiQLViewConfig::class, $viewConfig);
+        $this->assertSame('@OverblogGraphiQL/GraphiQL/index.html.twig', $viewConfig->getTemplate());
+        $this->assertSame($jsLibraries, $viewConfig->getJavascriptLibraries());
+
+        $controllerDefinition = $container->getDefinition('overblog_graphiql.controller');
+        $viewConfigArgument = $controllerDefinition->getArgument(2);
+        $this->assertInstanceOf(Reference::class, $viewConfigArgument);
+        $this->assertSame('overblog_graphiql.view.config', (string) $viewConfigArgument);
     }
 
     private function createContainer()
