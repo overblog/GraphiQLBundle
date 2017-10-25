@@ -11,7 +11,7 @@ class GraphiQLControllerTest extends TestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/graphiql/invalid');
+        $client->request('GET', '/graphiql/second');
         $response = $client->getResponse();
 
         $this->assertInstanceOf(Response::class, $response);

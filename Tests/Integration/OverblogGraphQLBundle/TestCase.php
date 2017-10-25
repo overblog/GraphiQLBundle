@@ -18,6 +18,7 @@ abstract class TestCase extends AbstractTestCase
     protected static function createKernel(array $options = [])
     {
         $options['test_case'] = 'Integration_OverblogGraphQLBundle';
+
         return parent::createKernel($options);
     }
 }

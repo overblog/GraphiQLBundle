@@ -23,17 +23,14 @@ abstract class TestCase extends WebTestCase
      */
     protected static function createKernel(array $options = [])
     {
-        if (null === static::$class) {
-            static::$class = static::getKernelClass();
-        }
+        static::$class = static::getKernelClass();
 
-        $options['test_case'] = isset($options['test_case']) ? $options['test_case'] : null;
+        $options['test_case'] = isset($options['test_case']) ? $options['test_case'] : 'default';
 
-        $env = isset($options['environment']) ? $options['environment'] : 'overbloggraphbundletest'.strtolower($options['test_case']);
+        $env = isset($options['environment']) ? $options['environment'] : 'overbloggraphibundletest'.strtolower($options['test_case']);
         $debug = isset($options['debug']) ? $options['debug'] : true;
 
-        $kernelKey = $options['test_case'] ?: '__default__';
-        $kernelKey .= '//'.$env.'//'.var_export($debug, true);
+        $kernelKey = '//'.$env.'//'.var_export($debug, true);
 
         if (!isset(self::$kernels[$kernelKey])) {
             self::$kernels[$kernelKey] = new static::$class($env, $debug, $options['test_case']);
