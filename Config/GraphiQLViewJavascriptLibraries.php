@@ -4,13 +4,13 @@ namespace Overblog\GraphiQLBundle\Config;
 
 class GraphiQLViewJavascriptLibraries
 {
-    /** @var  string */
+    /** @var string */
     private $graphiQLVersion;
 
-    /** @var  string */
+    /** @var string */
     private $reactVersion;
 
-    /** @var  string */
+    /** @var string */
     private $fetchVersion;
 
     public function __construct(

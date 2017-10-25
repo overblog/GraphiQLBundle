@@ -59,9 +59,9 @@ final class TestKernel extends Kernel
         $loader->load(function (ContainerBuilder $container) {
             $container->loadFromExtension('framework', [
                 'secret' => 'test',
-                'test'=> true,
+                'test' => true,
                 'templating' => ['engine' => ['twig']],
-                'router' => ['resource' => '%kernel.root_dir%/../../Resources/config/routing.xml']
+                'router' => ['resource' => '%kernel.root_dir%/../../Resources/config/routing.xml'],
             ]);
         });
     }

@@ -30,13 +30,13 @@ class OverblogGraphiQLExtension extends Extension
         $graphiQLViewConfigJSLibraries->setArguments([
             $config['javascript_libraries']['graphiql'],
             $config['javascript_libraries']['react'],
-            $config['javascript_libraries']['fetch']
+            $config['javascript_libraries']['fetch'],
         ]);
 
         $graphiQLViewConfig = $container->getDefinition('overblog_graphiql.view.config');
         $graphiQLViewConfig->setArguments([
             new Reference('overblog_graphiql.view.config.javascript_libraries'),
-            $config['template']
+            $config['template'],
         ]);
     }
 
