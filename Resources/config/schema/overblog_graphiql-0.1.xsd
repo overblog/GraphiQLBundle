@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns="http://over-blog.com/schema/dic/overblog_graphiql"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://over-blog.com/schema/dic/overblog_graphiql"
+    elementFormDefault="qualified">
+
+    <xsd:element name="config" type="config" />
+
+    <xsd:simpleType name="relayMode">
+        <xsd:restriction>
+            <xsd:enumeration value="modern" />
+            <xsd:enumeration value="classic" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="javascriptLibraries">
+        <xsd:attribute name="graphiql" type="xsd:token"/>
+        <xsd:attribute name="react" type="xsd:token"/>
+        <xsd:attribute name="fetch" type="xsd:token"/>
+        <xsd:attribute name="relay" type="relayMode"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="config">
+        <xsd:attribute name="template" type="xsd:string" />
+        <xsd:attribute name="javascript_libraries" type="javascriptLibraries" />
+    </xsd:complexType>
+</xsd:schema>

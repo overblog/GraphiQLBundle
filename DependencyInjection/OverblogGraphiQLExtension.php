@@ -58,6 +58,6 @@ class OverblogGraphiQLExtension extends Extension
      */
     public function getNamespace()
     {
-        return 'http://symfony.com/schema/dic/debug';
+        return 'http://over-blog.com/schema/dic/overblog_graphiql';
     }
 }
