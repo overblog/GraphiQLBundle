@@ -2,18 +2,13 @@
 
 namespace Overblog\GraphiQLBundle\Controller;
 
+use Overblog\GraphiQLBundle\Config\GraphiQLControllerEndpoint;
 use Overblog\GraphiQLBundle\Config\GraphiQLViewConfig;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment as TwigEnvironment;
 
 class GraphiQLController
 {
-    /**
-     * @var RouterInterface
-     */
-    private $router;
-
     /**
      * @var TwigEnvironment
      */
@@ -24,23 +19,24 @@ class GraphiQLController
      */
     private $viewConfig;
 
+    /**
+     * @var GraphiQLControllerEndpoint
+     */
+    private $graphQLEndpoint;
+
     public function __construct(
-        RouterInterface $router,
         TwigEnvironment $twig,
-        GraphiQLViewConfig $viewConfig
+        GraphiQLViewConfig $viewConfig,
+        GraphiQLControllerEndpoint $graphQLEndpoint
     ) {
-        $this->router = $router;
         $this->twig = $twig;
         $this->viewConfig = $viewConfig;
+        $this->graphQLEndpoint = $graphQLEndpoint;
     }
 
     public function indexAction($schemaName = null)
     {
-        if (null === $schemaName) {
-            $endpoint = $this->router->generate('overblog_graphiql_endpoint');
-        } else {
-            $endpoint = $this->router->generate('overblog_graphiql_endpoint_multiple', ['schemaName' => $schemaName]);
-        }
+        $endpoint = $schemaName === null ? $this->graphQLEndpoint->getDefault() : $this->graphQLEndpoint->getBySchema($schemaName);
 
         return Response::create($this->twig->render(
             $this->viewConfig->getTemplate(),

@@ -6,6 +6,10 @@
     http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="overblog_graphiql.controller.graphql.endpoint"
+                 class="Overblog\GraphiQLBundle\Config\GraphiQLControllerEndpoint"
+                 autowire="false" public="true">
+        </service>
         <service id="overblog_graphiql.view.config"
                  class="Overblog\GraphiQLBundle\Config\GraphiQLViewConfig"
                  autowire="false" public="true">
@@ -17,9 +21,9 @@
         <service id="overblog_graphiql.controller"
                  class="Overblog\GraphiQLBundle\Controller\GraphiQLController"
                  autowire="false" public="true">
-            <argument type="service" id="router" />
             <argument type="service" id="twig" />
             <argument type="service" id="overblog_graphiql.view.config" />
+            <argument type="service" id="overblog_graphiql.controller.graphql.endpoint" />
         </service>
     </services>
 </container>
