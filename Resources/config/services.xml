@@ -8,15 +8,15 @@
     <services>
         <service id="overblog_graphiql.controller.graphql.endpoint"
                  class="Overblog\GraphiQLBundle\Config\GraphiQLControllerEndpoint"
-                 autowire="false" public="true">
+                 autowire="false" public="false">
         </service>
         <service id="overblog_graphiql.view.config"
                  class="Overblog\GraphiQLBundle\Config\GraphiQLViewConfig"
-                 autowire="false" public="true">
+                 autowire="false" public="false">
         </service>
         <service id="overblog_graphiql.view.config.javascript_libraries"
                  class="Overblog\GraphiQLBundle\Config\GraphiQLViewJavascriptLibraries"
-                 autowire="false" public="true">
+                 autowire="false" public="false">
         </service>
         <service id="overblog_graphiql.controller"
                  class="Overblog\GraphiQLBundle\Controller\GraphiQLController"

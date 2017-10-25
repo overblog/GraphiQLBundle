@@ -2,8 +2,10 @@
 
 namespace Overblog\GraphiQLBundle\DependencyInjection\Compiler\Endpoints;
 
+use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\RouteResolver;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Reference;
 
 final class OverblogGraphQLBundleEndpointWiringPass implements CompilerPassInterface
 {
@@ -15,6 +17,15 @@ final class OverblogGraphQLBundleEndpointWiringPass implements CompilerPassInter
             return;
         }
 
-        // @todo add schemas to RouteResolver
+        $endpointDefinition = $container->getDefinition('overblog_graphiql.controller.graphql.endpoint');
+        $endpointDefinition->setClass(RouteResolver::class);
+
+        $endpointDefinition->setArguments([
+            new Reference('router'),
+            [
+                'default' => 'overblog_graphiql_endpoint',
+                'second' => 'overblog_graphiql_endpoint',
+            ]
+        ]);
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Overblog\GraphQLBundle\Tests\Controller;
+namespace Overblog\GraphQLBundle\Tests\Integration\OverblogGraphQLBundle\Controller;
 
-use Overblog\GraphiQLBundle\Tests\TestCase;
+use Overblog\GraphiQLBundle\Tests\Integration\OverblogGraphQLBundle\TestCase;
 use Symfony\Component\HttpFoundation\Response;
 
 class GraphiQLControllerTest extends TestCase
@@ -11,11 +11,11 @@ class GraphiQLControllerTest extends TestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/graphiql/invalid');
+        $client->request('GET', '/graphiql/second');
         $response = $client->getResponse();
 
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame(500, $response->getStatusCode());
+        $this->assertSame(200, $response->getStatusCode());
     }
 
     public function testDefaultSchema()

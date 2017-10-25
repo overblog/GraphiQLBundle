@@ -15,32 +15,21 @@ final class RouteResolver implements GraphiQLControllerEndpoint
     /**
      * @var array
      */
-    private $endpointMap;
+    private $routeCollection;
 
-    public function __construct(RouterInterface $router, array $endpointMap)
+    public function __construct(RouterInterface $router, array $routeCollection)
     {
         $this->router = $router;
-        $this->endpointMap = $endpointMap;
+        $this->routeCollection = $routeCollection;
     }
 
     public function getBySchema($name)
     {
-        return $this->router->generate($this->endpointMap[$name]);
-    }
-
-    public function agetBySchema($name)
-    {
-        if (null === $name) {
-            $endpoint = $this->router->generate('overblog_graphiql_endpoint');
-        } else {
-            $endpoint = $this->router->generate('overblog_graphiql_endpoint_multiple', ['schemaName' => $name]);
-        }
-
-        return $endpoint;
+        return $this->router->generate($this->routeCollection[$name]);
     }
 
     public function getDefault()
     {
-        return '/';
+        return $this->getBySchema('default');
     }
 }
