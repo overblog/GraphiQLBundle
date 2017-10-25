@@ -17,7 +17,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('template')
                     ->info('In case you need it\'s possible to replace GraphiQL twig template')
-                    ->defaultValue('@OverblogGraphQL/GraphiQL/index.html.twig')
+                    ->defaultValue('@OverblogGraphiQL/GraphiQL/index.html.twig')
                 ->end()
                 ->arrayNode('javascript_libraries')
                     ->addDefaultsIfNotSet()

@@ -26,9 +26,18 @@ class OverblogGraphiQLExtensionTest extends TestCase
         $container->loadFromExtension('overblog_graphiql');
         $this->compileContainer($container);
 
-        $definition = $container->getDefinition('overblog_graphiql.controller');
+        $bundleConfig = $container->getParameter('overblog_graphiql.config');
 
-        $this->assertEquals([], $definition->getArguments());
+        $this->assertEquals([
+            'template' => '@OverblogGraphiQL/GraphiQL/index.html.twig',
+            'javascript_libraries' =>
+                [
+                    'graphiql' => '0.11',
+                    'react' => '15.6',
+                    'fetch' => '2.0',
+                    'relay' => 'classic',
+                ],
+        ], $bundleConfig);
     }
 
     private function createContainer()
