@@ -1,17 +1,9 @@
 <?php
 
-/*
- * This file is part of the OverblogGraphQLBundle package.
- *
- * (c) Overblog <http://github.com/overblog/>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Overblog\GraphQLBundle\Tests\Controller;
 
 use Overblog\GraphiQLBundle\Tests\TestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class GraphiQLControllerTest extends TestCase
 {
@@ -23,7 +15,11 @@ class GraphiQLControllerTest extends TestCase
         $client = static::createClient();
 
         $client->request('GET', $uri);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $response = $client->getResponse();
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertSame(200, $response->getStatusCode());
+        $this->stringContains('Loading...', $response->getContent());
     }
 
     public function graphiQLUriProvider()

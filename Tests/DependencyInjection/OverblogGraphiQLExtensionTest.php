@@ -1,19 +1,9 @@
 <?php
 
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Overblog\GraphiQLBundle\Tests\DependencyInjection;
 
 use Overblog\GraphiQLBundle\DependencyInjection\OverblogGraphiQLExtension;
 use PHPUnit\Framework\TestCase;
-use Symfony\Bundle\TwigBundle\DependencyInjection\TwigExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
