@@ -35,12 +35,12 @@ final class TestKernel extends Kernel
 
     public function getCacheDir()
     {
-        return sys_get_temp_dir().'/OverblogGraphQLBundle/'.__DIR__.'/'.Kernel::VERSION.'/'.$this->testCase.'/cache/'.$this->environment;
+        return sys_get_temp_dir().'/OverblogGraphQLBundle/'.Kernel::VERSION.'/'.$this->testCase.'/cache/'.$this->environment;
     }
 
     public function getLogDir()
     {
-        return sys_get_temp_dir().'/OverblogGraphQLBundle/'.__DIR__.'/'.Kernel::VERSION.'/'.$this->testCase.'/logs';
+        return sys_get_temp_dir().'/OverblogGraphQLBundle/'.Kernel::VERSION.'/'.$this->testCase.'/logs';
     }
 
     public function getRootDir()

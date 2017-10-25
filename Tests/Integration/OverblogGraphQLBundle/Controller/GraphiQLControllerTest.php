@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GraphiQLControllerTest extends TestCase
 {
-    public function testInvalidSchema()
+    public function testSecondSchema()
     {
         $client = static::createClient();
 

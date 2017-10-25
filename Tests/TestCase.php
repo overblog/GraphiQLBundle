@@ -5,9 +5,6 @@ namespace Overblog\GraphiQLBundle\Tests;
 use Overblog\GraphiQLBundle\Tests\Fixtures\TestKernel;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-/**
- * TestCase.
- */
 abstract class TestCase extends WebTestCase
 {
     /** @var TestKernel[] */
