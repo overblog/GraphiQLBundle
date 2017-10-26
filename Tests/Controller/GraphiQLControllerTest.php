@@ -29,4 +29,16 @@ class GraphiQLControllerTest extends TestCase
         $this->assertSame(200, $response->getStatusCode());
         $this->stringContains('Loading...', $response->getContent());
     }
+
+    public function testDefaultSchemaViaMultipleRoute()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/graphiql/default');
+        $response = $client->getResponse();
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertSame(200, $response->getStatusCode());
+        $this->stringContains('Loading...', $response->getContent());
+    }
 }
