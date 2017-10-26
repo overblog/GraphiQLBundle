@@ -1,8 +1,9 @@
 <?php
 
-namespace Overblog\GraphiQLBundle\Tests\Fixtures;
+namespace Overblog\GraphiQLBundle\Tests\Integration\OverblogGraphQLBundle\Fixtures;
 
 use Overblog\GraphiQLBundle\OverblogGraphiQLBundle;
+use Overblog\GraphQLBundle\OverblogGraphQLBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -21,6 +22,7 @@ final class TestKernel extends Kernel
         return [
             new FrameworkBundle(),
             new TwigBundle(),
+            new OverblogGraphQLBundle(),
             new OverblogGraphiQLBundle(),
         ];
     }
@@ -62,7 +64,9 @@ final class TestKernel extends Kernel
                 'test' => true,
                 'templating' => ['engine' => ['twig']],
                 'assets' => ['enabled' => false],
-                'router' => ['resource' => '%kernel.root_dir%/../../Resources/config/routing.xml'],
+                'router' => [
+                    'resource' => '%kernel.root_dir%/Resources/config/routing.xml',
+                ],
             ]);
         });
     }

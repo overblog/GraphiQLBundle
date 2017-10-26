@@ -33,7 +33,7 @@ class OverblogGraphiQLExtensionTest extends TestCase
         $this->assertSame($jsLibraries, $viewConfig->getJavascriptLibraries());
 
         $controllerDefinition = $container->getDefinition('overblog_graphiql.controller');
-        $viewConfigArgument = $controllerDefinition->getArgument(2);
+        $viewConfigArgument = $controllerDefinition->getArgument(1);
         $this->assertInstanceOf(Reference::class, $viewConfigArgument);
         $this->assertSame('overblog_graphiql.view.config', (string) $viewConfigArgument);
     }

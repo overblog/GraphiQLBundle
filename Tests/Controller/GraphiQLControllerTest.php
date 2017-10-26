@@ -7,26 +7,26 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GraphiQLControllerTest extends TestCase
 {
-    /**
-     * @dataProvider graphiQLUriProvider
-     */
-    public function testIndexAction($uri)
+    public function testInvalidSchema()
     {
         $client = static::createClient();
 
-        $client->request('GET', $uri);
+        $client->request('GET', '/graphiql/second');
+        $response = $client->getResponse();
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertSame(500, $response->getStatusCode());
+    }
+
+    public function testDefaultSchema()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/graphiql');
         $response = $client->getResponse();
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->stringContains('Loading...', $response->getContent());
-    }
-
-    public function graphiQLUriProvider()
-    {
-        return [
-            ['/graphiql'],
-            ['/graphiql/default'],
-        ];
     }
 }
