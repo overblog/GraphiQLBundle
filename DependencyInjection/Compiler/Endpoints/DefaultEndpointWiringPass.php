@@ -9,6 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class DefaultEndpointWiringPass implements CompilerPassInterface
 {
+    //@todo https://github.com/symfony/symfony/blob/master/src/Symfony/Component/DependencyInjection/Tests/Compiler/RemoveUnusedDefinitionsPassTest.php
     public function process(ContainerBuilder $container)
     {
         $endpointDefinition = $container->getDefinition('overblog_graphiql.controller.graphql.endpoint');

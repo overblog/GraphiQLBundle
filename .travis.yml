@@ -1,8 +1,5 @@
 language: php
 
-dist: trusty
-sudo: false
-
 git:
     depth: 1
 
