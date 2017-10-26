@@ -8,12 +8,12 @@ final class OverblogGraphQLBundleEndpointResolver
     {
         if ('default' === $name) {
             return [
-                'overblog_graphiql_endpoint',
+                'overblog_graphql_endpoint',
             ];
         }
 
         return [
-            'overblog_graphiql_endpoint_multiple',
+            'overblog_graphql_multiple_endpoint',
             ['schemaName' => $name],
         ];
     }

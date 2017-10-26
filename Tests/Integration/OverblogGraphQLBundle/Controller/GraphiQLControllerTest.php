@@ -17,7 +17,7 @@ final class GraphiQLControllerTest extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->stringContains('Loading...', $response->getContent());
-        $this->stringContains('var endpoint = "\/graphiql\/secondFakeSchema"', $response->getContent());
+        $this->stringContains('var endpoint = "\/graphql\/secondFakeSchema"', $response->getContent());
     }
 
     public function testDefaultSchema()
@@ -30,6 +30,6 @@ final class GraphiQLControllerTest extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->stringContains('Loading...', $response->getContent());
-        $this->stringContains('var endpoint = "\/graphiql"', $response->getContent());
+        $this->stringContains('var endpoint = "\/"', $response->getContent());
     }
 }
