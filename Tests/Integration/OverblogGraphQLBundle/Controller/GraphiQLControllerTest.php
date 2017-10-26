@@ -5,7 +5,7 @@ namespace Overblog\GraphQLBundle\Tests\Integration\OverblogGraphQLBundle\Control
 use Overblog\GraphiQLBundle\Tests\Integration\OverblogGraphQLBundle\TestCase;
 use Symfony\Component\HttpFoundation\Response;
 
-class GraphiQLControllerTest extends TestCase
+final class GraphiQLControllerTest extends TestCase
 {
     public function testSecondSchema()
     {
@@ -16,6 +16,7 @@ class GraphiQLControllerTest extends TestCase
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
+        $this->stringContains('Loading...', $response->getContent());
         $this->stringContains('var endpoint = "\/graphiql\/secondFakeSchema"', $response->getContent());
     }
 

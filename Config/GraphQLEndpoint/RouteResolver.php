@@ -25,9 +25,21 @@ final class RouteResolver implements GraphiQLControllerEndpoint
 
     public function getBySchema($name)
     {
-        $route = is_callable($this->routeCollection) ? call_user_func($this->routeCollection, $name) : $this->routeCollection[$name];
+        $route = null;
 
-        return $this->router->generate($route[0], $route[1]);
+        if (is_callable($this->routeCollection)) {
+            $route = call_user_func($this->routeCollection, $name);
+        }
+
+        if (null === $route && array_key_exists($name, $this->routeCollection)) {
+            $route = $this->routeCollection[$name];
+        }
+
+        if (!is_array($route)) {
+            throw GraphQLEndpointInvalidSchema::forSchemaAndResolver($name, self::class);
+        }
+
+        return $this->router->generate(...$route);
     }
 
     public function getDefault()
