@@ -37,7 +37,7 @@ final class RouteResolverTest extends TestCase
         $routeResolver = $this->subject([]);
 
         $this->expectException(GraphQLEndpointInvalidSchemaException::class);
-        $this->expectExceptionMessage('Schema "default" isn\'t valid for resolver "Overblog\GraphiQLBundle\Config\GraphQLEndpoint\RouteResolver"');
+        $this->expectExceptionMessage('NO schema provided for resolver "Overblog\GraphiQLBundle\Config\GraphQLEndpoint\RouteResolver"');
 
         $routeResolver->getDefault();
     }

@@ -11,7 +11,7 @@ interface GraphiQLControllerEndpoint
      *
      * @return string
      */
-    public function getBySchema($name);
+    public function getBySchema($name = null);
 
     /**
      * Return the default uri.

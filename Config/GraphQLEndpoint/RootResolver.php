@@ -6,9 +6,9 @@ use Overblog\GraphiQLBundle\Config\GraphiQLControllerEndpoint;
 
 final class RootResolver implements GraphiQLControllerEndpoint
 {
-    public function getBySchema($name)
+    public function getBySchema($name = null)
     {
-        if ('default' === $name) {
+        if ('default' === $name || null === $name) {
             return '/';
         }
 
@@ -17,6 +17,6 @@ final class RootResolver implements GraphiQLControllerEndpoint
 
     public function getDefault()
     {
-        return $this->getBySchema('default');
+        return $this->getBySchema();
     }
 }
