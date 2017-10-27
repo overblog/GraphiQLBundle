@@ -8,11 +8,6 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 
-/**
- * DebugExtension.
- *
- * @author Nicolas Grekas <p@tchwork.com>
- */
 class OverblogGraphiQLExtension extends Extension
 {
     /**

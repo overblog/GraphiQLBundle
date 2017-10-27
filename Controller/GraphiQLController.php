@@ -7,7 +7,7 @@ use Overblog\GraphiQLBundle\Config\GraphiQLViewConfig;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment as TwigEnvironment;
 
-class GraphiQLController
+final class GraphiQLController
 {
     /**
      * @var TwigEnvironment

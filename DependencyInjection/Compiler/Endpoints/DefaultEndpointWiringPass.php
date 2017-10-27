@@ -7,7 +7,7 @@ use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\RootResolver;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class DefaultEndpointWiringPass implements CompilerPassInterface
+final class DefaultEndpointWiringPass implements CompilerPassInterface
 {
     //@todo https://github.com/symfony/symfony/blob/master/src/Symfony/Component/DependencyInjection/Tests/Compiler/RemoveUnusedDefinitionsPassTest.php
     public function process(ContainerBuilder $container)

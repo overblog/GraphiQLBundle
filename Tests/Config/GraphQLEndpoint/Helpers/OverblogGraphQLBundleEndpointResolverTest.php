@@ -5,7 +5,7 @@ namespace Overblog\GraphiQLBundle\Tests\Config\GraphQLEndpoint\Helpers;
 use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\Helpers\OverblogGraphQLBundleEndpointResolver;
 use PHPUnit\Framework\TestCase;
 
-class OverblogGraphQLBundleEndpointResolverTest extends TestCase
+final class OverblogGraphQLBundleEndpointResolverTest extends TestCase
 {
     public function testGetDefaultRoute()
     {

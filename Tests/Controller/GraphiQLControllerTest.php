@@ -5,7 +5,7 @@ namespace Overblog\GraphQLBundle\Tests\Controller;
 use Overblog\GraphiQLBundle\Tests\TestCase;
 use Symfony\Component\HttpFoundation\Response;
 
-class GraphiQLControllerTest extends TestCase
+final class GraphiQLControllerTest extends TestCase
 {
     public function testInvalidSchema()
     {

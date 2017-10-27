@@ -2,7 +2,7 @@
 
 namespace Overblog\GraphiQLBundle\Tests\Config\GraphQLEndpoint;
 
-use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\GraphQLEndpointInvalidSchema;
+use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\GraphQLEndpointInvalidSchemaException;
 use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\RouteResolver;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -36,7 +36,7 @@ final class RouteResolverTest extends TestCase
     {
         $routeResolver = $this->subject([]);
 
-        $this->expectException(GraphQLEndpointInvalidSchema::class);
+        $this->expectException(GraphQLEndpointInvalidSchemaException::class);
         $this->expectExceptionMessage('Schema "default" isn\'t valid for resolver "Overblog\GraphiQLBundle\Config\GraphQLEndpoint\RouteResolver"');
 
         $routeResolver->getDefault();

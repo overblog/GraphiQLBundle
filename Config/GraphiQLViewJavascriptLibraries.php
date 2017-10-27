@@ -2,7 +2,7 @@
 
 namespace Overblog\GraphiQLBundle\Config;
 
-class GraphiQLViewJavascriptLibraries
+final class GraphiQLViewJavascriptLibraries
 {
     /** @var string */
     private $graphiQLVersion;

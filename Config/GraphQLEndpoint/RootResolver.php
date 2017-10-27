@@ -12,7 +12,7 @@ final class RootResolver implements GraphiQLControllerEndpoint
             return '/';
         }
 
-        throw GraphQLEndpointInvalidSchema::forSchemaAndResolver($name, self::class);
+        throw GraphQLEndpointInvalidSchemaException::forSchemaAndResolver($name, self::class);
     }
 
     public function getDefault()

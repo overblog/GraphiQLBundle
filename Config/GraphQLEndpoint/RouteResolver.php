@@ -36,7 +36,7 @@ final class RouteResolver implements GraphiQLControllerEndpoint
         }
 
         if (!is_array($route)) {
-            throw GraphQLEndpointInvalidSchema::forSchemaAndResolver($name, self::class);
+            throw GraphQLEndpointInvalidSchemaException::forSchemaAndResolver($name, self::class);
         }
 
         return $this->router->generate(...$route);

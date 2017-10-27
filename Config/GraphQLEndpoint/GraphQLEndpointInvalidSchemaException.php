@@ -2,7 +2,7 @@
 
 namespace Overblog\GraphiQLBundle\Config\GraphQLEndpoint;
 
-class GraphQLEndpointInvalidSchema extends \RuntimeException
+class GraphQLEndpointInvalidSchemaException extends \RuntimeException
 {
     public static function forSchemaAndResolver($schemaName, $resolverClass)
     {

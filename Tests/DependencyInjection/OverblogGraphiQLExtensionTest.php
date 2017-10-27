@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\DependencyInjection\Reference;
 
-class OverblogGraphiQLExtensionTest extends TestCase
+final class OverblogGraphiQLExtensionTest extends TestCase
 {
     public function testLoadWithoutConfiguration()
     {
