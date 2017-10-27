@@ -4,19 +4,14 @@ namespace Overblog\GraphiQLBundle\Tests\Integration\OverblogGraphQLBundle\Fixtur
 
 use Overblog\GraphiQLBundle\OverblogGraphiQLBundle;
 use Overblog\GraphQLBundle\OverblogGraphQLBundle;
+use Overblog\GraphiQLBundle\Tests\TestKernel as AbstractTestKernel;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Kernel;
 
-final class TestKernel extends Kernel
+final class TestKernel extends AbstractTestKernel
 {
-    private $testCase;
-
-    /**
-     * {@inheritdoc}
-     */
     public function registerBundles()
     {
         return [
@@ -25,32 +20,6 @@ final class TestKernel extends Kernel
             new OverblogGraphQLBundle(),
             new OverblogGraphiQLBundle(),
         ];
-    }
-
-    public function __construct($environment, $debug, $testCase = null)
-    {
-        $this->testCase = null !== $testCase ? $testCase : false;
-        parent::__construct($environment, $debug);
-    }
-
-    public function getCacheDir()
-    {
-        return sys_get_temp_dir().'/OverblogGraphQLBundle/'.Kernel::VERSION.'/'.$this->testCase.'/cache/'.$this->environment;
-    }
-
-    public function getLogDir()
-    {
-        return sys_get_temp_dir().'/OverblogGraphQLBundle/'.Kernel::VERSION.'/'.$this->testCase.'/logs';
-    }
-
-    public function getRootDir()
-    {
-        return __DIR__;
-    }
-
-    public function isBooted()
-    {
-        return $this->booted;
     }
 
     /**
@@ -65,7 +34,7 @@ final class TestKernel extends Kernel
                 'templating' => ['engine' => ['twig']],
                 'assets' => ['enabled' => false],
                 'router' => [
-                    'resource' => '%kernel.root_dir%/Resources/config/routing.xml',
+                    'resource' => __DIR__ . '/Resources/config/routing.xml',
                 ],
             ]);
         });

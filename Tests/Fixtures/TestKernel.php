@@ -3,19 +3,14 @@
 namespace Overblog\GraphiQLBundle\Tests\Fixtures;
 
 use Overblog\GraphiQLBundle\OverblogGraphiQLBundle;
+use Overblog\GraphiQLBundle\Tests\TestKernel as AbstractTestKernel;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Kernel;
 
-final class TestKernel extends Kernel
+final class TestKernel extends AbstractTestKernel
 {
-    private $testCase;
-
-    /**
-     * {@inheritdoc}
-     */
     public function registerBundles()
     {
         return [
@@ -25,34 +20,8 @@ final class TestKernel extends Kernel
         ];
     }
 
-    public function __construct($environment, $debug, $testCase = null)
-    {
-        $this->testCase = null !== $testCase ? $testCase : false;
-        parent::__construct($environment, $debug);
-    }
-
-    public function getCacheDir()
-    {
-        return sys_get_temp_dir().'/OverblogGraphQLBundle/'.Kernel::VERSION.'/'.$this->testCase.'/cache/'.$this->environment;
-    }
-
-    public function getLogDir()
-    {
-        return sys_get_temp_dir().'/OverblogGraphQLBundle/'.Kernel::VERSION.'/'.$this->testCase.'/logs';
-    }
-
-    public function getRootDir()
-    {
-        return __DIR__;
-    }
-
-    public function isBooted()
-    {
-        return $this->booted;
-    }
-
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
@@ -62,7 +31,7 @@ final class TestKernel extends Kernel
                 'test' => true,
                 'templating' => ['engine' => ['twig']],
                 'assets' => ['enabled' => false],
-                'router' => ['resource' => '%kernel.root_dir%/../../Resources/config/routing.xml'],
+                'router' => ['resource' => '%kernel.root_dir%/../Resources/config/routing.xml'],
             ]);
         });
     }
