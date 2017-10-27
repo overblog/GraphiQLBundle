@@ -1,0 +1,13 @@
+framework:
+    test: ~
+    secret: test
+    router:
+        resource: "%kernel.root_dir%/../Resources/config/routing.xml"
+    templating:
+        engines: ['twig']
+    profiler:
+        enabled: false
+    assets:
+        enabled: false
+
+overblog_graphiql: ~

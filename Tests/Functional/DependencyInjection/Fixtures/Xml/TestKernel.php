@@ -1,10 +1,9 @@
 <?php
 
-namespace Overblog\GraphiQLBundle\Tests\Integration\OverblogGraphQLBundle\Fixtures;
+namespace Overblog\GraphiQLBundle\Tests\Functional\DependencyInjection\Fixtures\Xml;
 
 use Overblog\GraphiQLBundle\OverblogGraphiQLBundle;
 use Overblog\GraphiQLBundle\Tests\TestKernel as AbstractTestKernel;
-use Overblog\GraphQLBundle\OverblogGraphQLBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -17,7 +16,6 @@ final class TestKernel extends AbstractTestKernel
         return [
             new FrameworkBundle(),
             new TwigBundle(),
-            new OverblogGraphQLBundle(),
             new OverblogGraphiQLBundle(),
         ];
     }
@@ -27,15 +25,10 @@ final class TestKernel extends AbstractTestKernel
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
+        $loader->load(__DIR__.'/config.xml');
         $loader->load(function (ContainerBuilder $container) {
             $container->loadFromExtension('framework', [
-                'secret' => 'test',
-                'test' => true,
-                'templating' => ['engine' => ['twig']],
                 'assets' => ['enabled' => false],
-                'router' => [
-                    'resource' => __DIR__.'/Resources/config/routing.xml',
-                ],
             ]);
         });
     }

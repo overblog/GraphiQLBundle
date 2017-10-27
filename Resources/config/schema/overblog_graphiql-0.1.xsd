@@ -7,7 +7,7 @@
     <xsd:element name="config" type="config" />
 
     <xsd:simpleType name="relayMode">
-        <xsd:restriction>
+        <xsd:restriction base="xsd:token">
             <xsd:enumeration value="modern" />
             <xsd:enumeration value="classic" />
         </xsd:restriction>
@@ -21,7 +21,9 @@
     </xsd:complexType>
 
     <xsd:complexType name="config">
-        <xsd:attribute name="template" type="xsd:string" />
-        <xsd:attribute name="javascript_libraries" type="javascriptLibraries" />
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="template" type="xsd:string" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="javascript_libraries" type="javascriptLibraries" minOccurs="0" maxOccurs="1" />
+        </xsd:choice>
     </xsd:complexType>
 </xsd:schema>
