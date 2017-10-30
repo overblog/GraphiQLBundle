@@ -3,7 +3,7 @@
 namespace Overblog\GraphiQLBundle\Tests\DependencyInjection;
 
 use Overblog\GraphiQLBundle\Config\GraphiQLViewConfig;
-use Overblog\GraphiQLBundle\Config\GraphiQLViewJavascriptLibraries;
+use Overblog\GraphiQLBundle\Config\GraphiQLViewJavaScriptLibraries;
 use Overblog\GraphiQLBundle\DependencyInjection\OverblogGraphiQLExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -21,7 +21,7 @@ final class OverblogGraphiQLExtensionTest extends TestCase
 
         $jsLibraries = $container->get('overblog_graphiql.view.config.javascript_libraries');
 
-        $this->assertInstanceOf(GraphiQLViewJavascriptLibraries::class, $jsLibraries);
+        $this->assertInstanceOf(GraphiQLViewJavaScriptLibraries::class, $jsLibraries);
         $this->assertSame('2.0', $jsLibraries->getFetchVersion());
         $this->assertSame('15.6', $jsLibraries->getReactVersion());
         $this->assertSame('0.11', $jsLibraries->getGraphiQLVersion());
@@ -30,7 +30,7 @@ final class OverblogGraphiQLExtensionTest extends TestCase
 
         $this->assertInstanceOf(GraphiQLViewConfig::class, $viewConfig);
         $this->assertSame('@OverblogGraphiQL/GraphiQL/index.html.twig', $viewConfig->getTemplate());
-        $this->assertSame($jsLibraries, $viewConfig->getJavascriptLibraries());
+        $this->assertSame($jsLibraries, $viewConfig->getJavaScriptLibraries());
 
         $controllerDefinition = $container->getDefinition('overblog_graphiql.controller');
         $viewConfigArgument = $controllerDefinition->getArgument(1);
