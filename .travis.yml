@@ -22,9 +22,9 @@ matrix:
         - php: 7.1
           env: SYMFONY_VERSION=3.3.* TEST_COVERAGE=true
         - php: 7.1
-          env: SYMFONY_VERSION=3.3.* GRAPHQLBUNDLE_VERSION=0.9.0
+          env: SYMFONY_VERSION=3.3.* GRAPHQLBUNDLE_VERSION=0.9.*
         - php: 7.1
-          env: SYMFONY_VERSION=3.4.* GRAPHQLBUNDLE_VERSION=0.10.0 DEPENDENCIES=dev
+          env: SYMFONY_VERSION=3.4.* GRAPHQLBUNDLE_VERSION=0.10.* DEPENDENCIES=dev
         - php: 7.1
           env: SYMFONY_VERSION=3.4.* DEPENDENCIES=dev
         - php: 7.1
