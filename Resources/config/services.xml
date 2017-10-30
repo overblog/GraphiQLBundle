@@ -14,7 +14,7 @@
                  autowire="false" public="false">
         </service>
         <service id="overblog_graphiql.view.config.javascript_libraries"
-                 class="Overblog\GraphiQLBundle\Config\GraphiQLViewJavascriptLibraries"
+                 class="Overblog\GraphiQLBundle\Config\GraphiQLViewJavaScriptLibraries"
                  autowire="false" public="false">
         </service>
         <service id="overblog_graphiql.controller"

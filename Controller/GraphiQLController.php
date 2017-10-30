@@ -43,9 +43,9 @@ final class GraphiQLController
             [
                 'endpoint' => $endpoint,
                 'versions' => [
-                    'graphiql' => $this->viewConfig->getJavascriptLibraries()->getGraphiQLVersion(),
-                    'react' => $this->viewConfig->getJavascriptLibraries()->getReactVersion(),
-                    'fetch' => $this->viewConfig->getJavascriptLibraries()->getFetchVersion(),
+                    'graphiql' => $this->viewConfig->getJavaScriptLibraries()->getGraphiQLVersion(),
+                    'react' => $this->viewConfig->getJavaScriptLibraries()->getReactVersion(),
+                    'fetch' => $this->viewConfig->getJavaScriptLibraries()->getFetchVersion(),
                 ],
             ]
         ));

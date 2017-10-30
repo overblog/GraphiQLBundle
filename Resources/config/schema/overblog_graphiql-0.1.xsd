@@ -13,7 +13,7 @@
         </xsd:restriction>
     </xsd:simpleType>
 
-    <xsd:complexType name="javascriptLibraries">
+    <xsd:complexType name="javaScriptLibraries">
         <xsd:attribute name="graphiql" type="xsd:token"/>
         <xsd:attribute name="react" type="xsd:token"/>
         <xsd:attribute name="fetch" type="xsd:token"/>
@@ -23,7 +23,7 @@
     <xsd:complexType name="config">
         <xsd:choice maxOccurs="unbounded">
             <xsd:element name="template" type="xsd:string" minOccurs="0" maxOccurs="1" />
-            <xsd:element name="javascript_libraries" type="javascriptLibraries" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="javascript_libraries" type="javaScriptLibraries" minOccurs="0" maxOccurs="1" />
         </xsd:choice>
     </xsd:complexType>
 </xsd:schema>
