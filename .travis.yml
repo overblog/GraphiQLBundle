@@ -46,7 +46,7 @@ before_install:
     - if [ ${TEST_COVERAGE} != true ]; then phpenv config-rm xdebug.ini || true; fi;
     - composer selfupdate
     - if [ $SYMFONY_VERSION ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --dev --no-update; fi;
-    - if [ $GRAPHQLPHP_VERSION ]; then composer require "overblog/graphql-bundle:${GRAPHQLBUNDLE_VERSION}" --dev --no-update; fi;
+    - if [ $GRAPHQLBUNDLE_VERSION ]; then composer require "overblog/graphql-bundle:${GRAPHQLBUNDLE_VERSION}" --dev --no-update; fi;
 
 install: composer update --prefer-source --no-interaction --optimize-autoloader ${COMPOSER_UPDATE_FLAGS}
 
