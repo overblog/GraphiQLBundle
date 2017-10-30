@@ -22,9 +22,9 @@ matrix:
         - php: 7.1
           env: SYMFONY_VERSION=3.3.* TEST_COVERAGE=true
         - php: 7.1
-          env: SYMFONY_VERSION=3.3.* GRAPHQLBUNDLE_VERSION=0.9.0
+          env: SYMFONY_VERSION=3.3.* GRAPHQLBUNDLE_VERSION=0.9.*
         - php: 7.1
-          env: SYMFONY_VERSION=3.4.* GRAPHQLBUNDLE_VERSION=0.10.0 DEPENDENCIES=dev
+          env: SYMFONY_VERSION=3.4.* GRAPHQLBUNDLE_VERSION=0.10.* DEPENDENCIES=dev
         - php: 7.1
           env: SYMFONY_VERSION=3.4.* DEPENDENCIES=dev
         - php: 7.1
@@ -46,7 +46,7 @@ before_install:
     - if [ ${TEST_COVERAGE} != true ]; then phpenv config-rm xdebug.ini || true; fi;
     - composer selfupdate
     - if [ $SYMFONY_VERSION ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --dev --no-update; fi;
-    - if [ $GRAPHQLPHP_VERSION ]; then composer require "overblog/graphql-bundle:${GRAPHQLBUNDLE_VERSION}" --dev --no-update; fi;
+    - if [ $GRAPHQLBUNDLE_VERSION ]; then composer require "overblog/graphql-bundle:${GRAPHQLBUNDLE_VERSION}" --dev --no-update; fi;
 
 install: composer update --prefer-source --no-interaction --optimize-autoloader ${COMPOSER_UPDATE_FLAGS}
 
