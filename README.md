@@ -1,24 +1,16 @@
-OverblogGraphQLBundle
+OverblogGraphiQLBundle
 ======================
 
-This Symfony bundle provides integration of [GraphQL](https://facebook.github.io/graphql/) using [webonyx/graphql-php](https://github.com/webonyx/graphql-php)
-and [GraphQL Relay](https://facebook.github.io/relay/docs/graphql-relay-specification.html).
-It also supports batching using libs like [ReactRelayNetworkLayer](https://github.com/nodkz/react-relay-network-layer) or [Apollo GraphQL](http://dev.apollodata.com/core/network.html#query-batching).
+This Symfony bundle provides integration of [GraphiQL](https://github.com/graphql/graphiql) interface to your Symfony application
 
 [![Build Status](https://travis-ci.org/overblog/GraphiQLBundle.svg?branch=master)](https://travis-ci.org/overblog/GraphiQLBundle)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/overblog/GraphiQLBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/overblog/GraphiQLBundle/?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/overblog/GraphiQLBundle/badge.svg?branch=master)](https://coveralls.io/github/overblog/GraphiQLBundle?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/overblog/graphiql-bundle/version)](https://packagist.org/packages/overblog/graphiql-bundle)
 [![Latest Unstable Version](https://poser.pugx.org/overblog/graphiql-bundle/v/unstable)](https://packagist.org/packages/overblog/graphiql-bundle)
 [![Total Downloads](https://poser.pugx.org/overblog/graphiql-bundle/downloads)](https://packagist.org/packages/overblog/graphiql-bundle)
 
-Documentation
--------------
-
-Symfony Flex installation
+Installation
 ------------
-
-**Note:** OverblogGraphQLBundle only supports Symfony Flex from version 0.9.0 onwards
 
 **a)** Download the bundle
 
@@ -28,15 +20,15 @@ In the project directory:
 composer require --dev overblog/graphiql-bundle
 ```
 
-Twig is also required, if you don't have it yet:
-```bash
-composer require twig
-```
+Symfony Flex installation
+------------
 
-**b)** Accept the contrib recipes installation from Symfony Flex
+**Note** If you are using Symfony Standard go to the next section
+
+**a)** Accept the contrib recipes installation from Symfony Flex
 
 ```
--  WARNING  overblog/graphql-bundle (0.9): From github.com/symfony/recipes-contrib
+-  WARNING  overblog/graphiql-bundle (0.1): From github.com/symfony/recipes-contrib
     The recipe for this package comes from the "contrib" repository, which is open to community contributions.
     Do you want to execute this recipe?
     [y] Yes
@@ -45,6 +37,48 @@ composer require twig
     [p] Yes permanently, never ask again for this project
     (defaults to n):
 ```
+
+**b)** In case you don't have twig
+
+In the project directory:
+
+```bash
+composer require twig
+```
+
+If you are using twig ONLY for graphiql you might want to use `--dev` during composer require
+
+Symfony Standard installation
+------------
+
+**a)** Enable the bundle in the 'dev' section
+
+```php
+// in app/AppKernel.php
+class AppKernel extends Kernel
+{
+    // ...
+
+    public function registerBundles()
+    {
+        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+            // ...
+            $bundles[] = new Overblog\GraphiQLBundle\OverblogGraphiQLBundle();
+        }
+    }
+}
+```
+
+**c)** Enable GraphiQL endpoint
+
+```yaml
+# in app/config/routing_dev.yml
+overblog_graphiql_endpoint:
+    resource: "@OverblogGraphiQLBundle/Resources/config/routing.xml"
+```
+
+Done
+------------
 
 It's done now, navigate to `/graphiql` in your project url
 
