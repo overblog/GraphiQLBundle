@@ -82,6 +82,12 @@ Done
 
 It's done now, navigate to `/graphiql` in your project url
 
+More
+------------
+
+* [Custom HTTP headers](Resources/doc/custom-http-headers.md)
+* [Define JavaScript libraries' versions](Resources/doc/libraries-versions.md)
+
 Community
 ---------
 
