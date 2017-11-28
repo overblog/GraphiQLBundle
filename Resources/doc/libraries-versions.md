@@ -10,5 +10,4 @@ overblog_graphiql:
         graphiql: "0.11"
         react: "15.6"
         fetch: "2.0"
-        relay: "classic"
 ```
