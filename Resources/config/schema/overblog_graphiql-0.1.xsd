@@ -6,18 +6,10 @@
 
     <xsd:element name="config" type="config" />
 
-    <xsd:simpleType name="relayMode">
-        <xsd:restriction base="xsd:token">
-            <xsd:enumeration value="modern" />
-            <xsd:enumeration value="classic" />
-        </xsd:restriction>
-    </xsd:simpleType>
-
     <xsd:complexType name="javaScriptLibraries">
         <xsd:attribute name="graphiql" type="xsd:token"/>
         <xsd:attribute name="react" type="xsd:token"/>
         <xsd:attribute name="fetch" type="xsd:token"/>
-        <xsd:attribute name="relay" type="relayMode"/>
     </xsd:complexType>
 
     <xsd:complexType name="config">
