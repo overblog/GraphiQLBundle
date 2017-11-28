@@ -22,8 +22,8 @@
 
     <xsd:complexType name="config">
         <xsd:choice maxOccurs="unbounded">
-            <xsd:element name="template" type="xsd:string" minOccurs="0" maxOccurs="1" />
             <xsd:element name="javascript_libraries" type="javaScriptLibraries" minOccurs="0" maxOccurs="1" />
         </xsd:choice>
+        <xsd:attribute name="template" type="xsd:string" />
     </xsd:complexType>
 </xsd:schema>

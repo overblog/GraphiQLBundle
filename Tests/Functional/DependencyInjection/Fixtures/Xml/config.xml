@@ -20,5 +20,5 @@
         </framework:templating>
     </framework:config>
 
-    <overblog_graphiql:config/>
+    <overblog_graphiql:config template="CheckTemplateConfigurationOnXML" />
 </container>
