@@ -12,20 +12,16 @@ This Symfony bundle provides integration of [GraphiQL](https://github.com/graphq
 Installation
 ------------
 
-**a)** Download the bundle
-
-In the project directory:
-
-```bash
-composer require --dev overblog/graphiql-bundle
-```
-
 Symfony Flex installation
 ------------
 
 **Note** If you are using Symfony Standard go to the next section
 
-**a)** Accept the contrib recipes installation from Symfony Flex
+**a)** Install bundle and accept the contrib recipes installation from Symfony Flex
+
+```bash
+composer req overblog/graphiql-bundle
+```
 
 ```
 -  WARNING  overblog/graphiql-bundle (0.1): From github.com/symfony/recipes-contrib
@@ -36,22 +32,21 @@ Symfony Flex installation
     [a] Yes for all packages, only for the current installation session
     [p] Yes permanently, never ask again for this project
     (defaults to n):
-```
-
-**b)** In case you don't have twig
-
-In the project directory:
-
-```bash
-composer require twig
-```
-
-If you are using twig ONLY for graphiql you might want to use `--dev` during composer require
+``
 
 Symfony Standard installation
 ------------
 
-**a)** Enable the bundle in the 'dev' section
+**a)** Download the bundle
+
+In the project directory:
+
+```bash
+composer require overblog/graphiql-bundle
+```
+
+
+**b)** Enable the bundle
 
 ```php
 // in app/AppKernel.php
@@ -61,10 +56,7 @@ class AppKernel extends Kernel
 
     public function registerBundles()
     {
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            // ...
-            $bundles[] = new Overblog\GraphiQLBundle\OverblogGraphiQLBundle();
-        }
+        $bundles[] = new Overblog\GraphiQLBundle\OverblogGraphiQLBundle();
     }
 }
 ```
