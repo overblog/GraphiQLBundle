@@ -56,7 +56,7 @@ before_install:
 install: composer update --prefer-source --no-interaction --optimize-autoloader ${COMPOSER_UPDATE_FLAGS}
 
 script:
-    - ./vendor/bin/phpunit --debug $( if [ $TEST_COVERAGE = true ]; then echo "-d xdebug.max_nesting_level=1000 --coverage-clover=build/logs/clover.xml"; fi; )
+    - ./bin/phpunit --debug $( if [ $TEST_COVERAGE = true ]; then echo "-d xdebug.max_nesting_level=1000 --coverage-clover=build/logs/clover.xml"; fi; )
     - if [ ${TEST_COVERAGE} = true ]; then wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O php-cs-fixer && php ./php-cs-fixer fix --diff --dry-run -v; fi;
 
 after_script:

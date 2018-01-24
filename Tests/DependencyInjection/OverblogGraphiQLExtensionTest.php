@@ -6,15 +6,17 @@ use Overblog\GraphiQLBundle\Config\GraphiQLViewConfig;
 use Overblog\GraphiQLBundle\Config\GraphiQLViewJavaScriptLibraries;
 use Overblog\GraphiQLBundle\DependencyInjection\OverblogGraphiQLExtension;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\DependencyInjection\Reference;
 
-final class OverblogGraphiQLExtensionTest extends TestCase
+final class OverblogGraphiQLExtensionTest extends TestCase implements CompilerPassInterface
 {
     public function testLoadWithoutConfiguration()
     {
         $container = $this->createContainer();
+        $container->addCompilerPass($this);
         $container->registerExtension(new OverblogGraphiQLExtension());
         $container->loadFromExtension('overblog_graphiql');
         $this->compileContainer($container);
@@ -56,5 +58,11 @@ final class OverblogGraphiQLExtensionTest extends TestCase
         $container->getCompilerPassConfig()->setOptimizationPasses([]);
         $container->getCompilerPassConfig()->setRemovingPasses([]);
         $container->compile();
+    }
+
+    public function process(ContainerBuilder $container)
+    {
+        $container->findDefinition('overblog_graphiql.view.config.javascript_libraries')->setPublic(true);
+        $container->findDefinition('overblog_graphiql.view.config')->setPublic(true);
     }
 }
