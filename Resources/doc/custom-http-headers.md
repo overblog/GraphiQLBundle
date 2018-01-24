@@ -17,6 +17,7 @@ The header can be added the following way:
 1. Override the default GraphiQL template:
 
 ```yaml
+# config/packages/graphiql.yaml or app/config/config.yml for Symfony without Flex
 overblog_graphiql:
     template: "GraphiQL/index.html.twig"
 ```
@@ -24,7 +25,7 @@ overblog_graphiql:
 
 ```twig
 {# templates/GraphiQL/index.html.twig #}
-{% extends 'OverblogGraphiQLBundle:GraphiQL:index.html.twig' %}
+{% extends '@OverblogGraphiQL/GraphiQL/index.html.twig' %}
 
 {% block graphql_fetcher_headers %}
 headers = {
@@ -39,7 +40,7 @@ Or append headers instead of replacing the default one:
 
 ```twig
 {# templates/GraphiQL/index.html.twig #}
-{% extends 'OverblogGraphiQLBundle:GraphiQL:index.html.twig' %}
+{% extends '@OverblogGraphiQL/GraphiQL/index.html.twig' %}
 
 {% block graphql_fetcher_headers %}
 {{ parent() }}
