@@ -23,7 +23,7 @@ final class OverblogGraphQLBundleEndpointWiringPass implements CompilerPassInter
 
         $endpointDefinition->setArguments([
             new Reference('router'),
-            [OverblogGraphQLBundleEndpointResolver::class, 'getByName'],
+            [$container->getParameter('overblog_graphiql.endpoint_resolver'), 'getByName'],
         ]);
     }
 }

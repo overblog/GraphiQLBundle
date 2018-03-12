@@ -21,6 +21,8 @@ class OverblogGraphiQLExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
+        $container->setParameter('overblog_graphiql.endpoint_resolver', $config['endpoint_resolver']);
+
         $graphiQLViewConfigJSLibraries = $container->getDefinition('overblog_graphiql.view.config.javascript_libraries');
         $graphiQLViewConfigJSLibraries->setArguments([
             $config['javascript_libraries']['graphiql'],
