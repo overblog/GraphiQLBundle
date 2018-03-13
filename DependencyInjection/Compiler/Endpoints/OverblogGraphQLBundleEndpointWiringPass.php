@@ -2,7 +2,6 @@
 
 namespace Overblog\GraphiQLBundle\DependencyInjection\Compiler\Endpoints;
 
-use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\Helpers\OverblogGraphQLBundleEndpointResolver;
 use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\RouteResolver;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -23,7 +22,7 @@ final class OverblogGraphQLBundleEndpointWiringPass implements CompilerPassInter
 
         $endpointDefinition->setArguments([
             new Reference('router'),
-            [OverblogGraphQLBundleEndpointResolver::class, 'getByName'],
+            [$container->getParameter('overblog_graphiql.endpoint_resolver'), 'getByName'],
         ]);
     }
 }

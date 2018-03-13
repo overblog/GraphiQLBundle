@@ -69,7 +69,7 @@ class AppKernel extends Kernel
 }
 ```
 
-**c)** Enable GraphiQL endpoint
+**b)** Enable GraphiQL endpoint
 
 ```yaml
 # in app/config/routing_dev.yml
@@ -87,6 +87,7 @@ More
 
 * [Custom HTTP headers](Resources/doc/custom-http-headers.md)
 * [Define JavaScript libraries' versions](Resources/doc/libraries-versions.md)
+* [Define a custom GraphQL endpoint](Resources/doc/graphql-endpoint.md)
 
 Community
 ---------
