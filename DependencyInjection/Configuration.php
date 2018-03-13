@@ -2,7 +2,6 @@
 
 namespace Overblog\GraphiQLBundle\DependencyInjection;
 
-use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\Helpers\EndpointResolverInterface;
 use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\Helpers\OverblogGraphQLBundleEndpointResolver;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

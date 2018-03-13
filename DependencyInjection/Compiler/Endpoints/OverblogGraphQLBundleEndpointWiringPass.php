@@ -2,7 +2,6 @@
 
 namespace Overblog\GraphiQLBundle\DependencyInjection\Compiler\Endpoints;
 
-use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\Helpers\OverblogGraphQLBundleEndpointResolver;
 use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\RouteResolver;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
