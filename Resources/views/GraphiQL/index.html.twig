@@ -58,7 +58,9 @@
 
       ReactDOM.render(
         React.createElement(GraphiQL, {
+          {% block graphiql_params %}
           fetcher: graphQLFetcher
+          {% endblock graphiql_params %}
         }),
         document.body
       )
