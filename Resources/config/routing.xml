@@ -5,10 +5,10 @@
         http://symfony.com/schema/routing/routing-1.0.xsd">
 
     <route id="overblog_graphiql_endpoint" path="/graphiql">
-        <default key="_controller">overblog_graphiql.controller:indexAction</default>
+        <default key="_controller">Overblog\GraphiQLBundle\Controller\GraphiQLController::indexAction</default>
     </route>
 
     <route id="overblog_graphiql_endpoint_multiple" path="/graphiql/{schemaName}">
-        <default key="_controller">overblog_graphiql.controller:indexAction</default>
+        <default key="_controller">Overblog\GraphiQLBundle\Controller\GraphiQLController::indexAction</default>
     </route>
 </routes>
