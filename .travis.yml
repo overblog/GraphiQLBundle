@@ -1,7 +1,7 @@
 language: php
 
 git:
-    depth: 1
+    depth: 50
 
 branches:
     only:
@@ -30,25 +30,23 @@ matrix:
           env: SYMFONY_VERSION=3.4.*
         - php: 7.2
           env: SYMFONY_VERSION=4.0.*
-        - php: 7.2
-          env: SYMFONY_VERSION=4.1.* DEPENDENCIES=dev
+        - php: 7.3
+          env: SYMFONY_VERSION=4.1.*
+        - php: 7.3
+          env: SYMFONY_VERSION=4.2.*
         - php: nightly
           env: COMPOSER_UPDATE_FLAGS=--ignore-platform-reqs
     allow_failures:
         - php: nightly
           env: COMPOSER_UPDATE_FLAGS=--ignore-platform-reqs
-        - php: 7.2
-          env: SYMFONY_VERSION=4.1.* DEPENDENCIES=dev
-
 cache:
     directories:
         - $HOME/.composer/cache
         - $HOME/.php_cs.cache
-        - vendor/
 
 before_install:
     - if [ "$DEPENDENCIES" = "dev" ]; then perl -pi -e 's/^}$/,"minimum-stability":"dev"}/' composer.json; fi;
-    - if [ ${TEST_COVERAGE} != true ]; then phpenv config-rm xdebug.ini || true; fi;
+    - if [ "${TEST_COVERAGE}" != "true" ]; then phpenv config-rm xdebug.ini || true; fi;
     - composer selfupdate
     - if [ $SYMFONY_VERSION ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --dev --no-update; fi;
     - if [ $GRAPHQLBUNDLE_VERSION ]; then composer require "overblog/graphql-bundle:${GRAPHQLBUNDLE_VERSION}" --dev --no-update; fi;
@@ -56,9 +54,9 @@ before_install:
 install: composer update --prefer-source --no-interaction --optimize-autoloader ${COMPOSER_UPDATE_FLAGS}
 
 script:
-    - ./bin/phpunit --debug $( if [ $TEST_COVERAGE = true ]; then echo "-d xdebug.max_nesting_level=1000 --coverage-clover=build/logs/clover.xml"; fi; )
-    - if [ ${TEST_COVERAGE} = true ]; then wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O php-cs-fixer && php ./php-cs-fixer fix --diff --dry-run -v; fi;
+    - ./bin/phpunit --debug $( if [ "$TEST_COVERAGE" = "true" ]; then echo "-d xdebug.max_nesting_level=1000 --coverage-clover=build/logs/clover.xml"; fi; )
+    - if [ "${TEST_COVERAGE}" = "true" ]; then wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O php-cs-fixer && php ./php-cs-fixer fix --diff --dry-run -v; fi;
 
 after_script:
-    - if [ ${TEST_COVERAGE} = true ]; then wget https://scrutinizer-ci.com/ocular.phar && travis_retry php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml; fi;
-    - if [ ${TEST_COVERAGE} = true ]; then composer require "satooshi/php-coveralls:^1.0" && travis_retry php ./vendor/bin/coveralls -v; fi;
+    - if [ "${TEST_COVERAGE}" = "true" ]; then wget https://scrutinizer-ci.com/ocular.phar && travis_retry php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml; fi;
+    - if [ "${TEST_COVERAGE}" = "true" ]; then composer require "satooshi/php-coveralls:^1.0" && travis_retry php ./vendor/bin/coveralls -v; fi;
