@@ -19,7 +19,7 @@ matrix:
           env: COMPOSER_UPDATE_FLAGS=--prefer-lowest
         - php: 7.1
         - php: 7.2
-          env: SYMFONY_VERSION=3.4.* GRAPHQLBUNDLE_VERSION=0.10.* DEPENDENCIES=dev
+          env: SYMFONY_VERSION=3.4.* GRAPHQLBUNDLE_VERSION=0.10.*
         - php: 7.2
           env: SYMFONY_VERSION=3.4.*
         - php: 7.2
