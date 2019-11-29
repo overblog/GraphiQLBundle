@@ -29,9 +29,9 @@ final class TestKernel extends AbstractTestKernel
             $container->loadFromExtension('framework', [
                 'secret' => 'test',
                 'test' => true,
-                'templating' => ['engine' => ['twig']],
+                //'templating' => ['engine' => ['twig']],
                 'assets' => ['enabled' => false],
-                'router' => ['resource' => '%kernel.root_dir%/../Resources/config/routing.xml'],
+                'router' => ['resource' => '%kernel.project_dir%/Resources/config/routing.xml'],
             ]);
         });
     }
