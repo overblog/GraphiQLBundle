@@ -82,9 +82,13 @@ Done
 
 It's done now, navigate to `/graphiql` in your project url
 
+Details: You can use graphiql panel to debug your application using symfony dumb.
+You can dump information anywhere and see the result into graphiql view.
+
 More
 ------------
 
+* [Custom Logo](Resources/doc/custom-logo.md)
 * [Custom HTTP headers](Resources/doc/custom-http-headers.md)
 * [Custom GraphiQL parameters](Resources/doc/custom-parameters.md)
 * [Define JavaScript libraries' versions](Resources/doc/libraries-versions.md)
