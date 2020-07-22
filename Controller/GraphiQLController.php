@@ -38,7 +38,7 @@ final class GraphiQLController
     {
         $endpoint = null === $schemaName ? $this->graphQLEndpoint->getDefault() : $this->graphQLEndpoint->getBySchema($schemaName);
 
-        return Response::create($this->twig->render(
+        return new Response($this->twig->render(
             $this->viewConfig->getTemplate(),
             [
                 'endpoint' => $endpoint,
