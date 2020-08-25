@@ -4,12 +4,18 @@
   {% block head %}
   {% block style %}
     <style>
-      html, body {
+      html, body, #root {
         width: 100%;
         height: 100%;
         margin: 0;
         overflow: hidden;
       }
+       #root .footer {
+           top:0;
+           left:0;
+           position:absolute;
+           width:100%;
+       }
     </style>
   <link href="https://unpkg.com/graphiql@{{ versions.graphiql }}/graphiql.css" rel="stylesheet">
   {% endblock style %}
@@ -30,6 +36,7 @@
   {% endblock head %}
 </head>
 <body>
+    <div id="root"></div>
 {% block body %}
   {% block body_loading %}Loading...{% endblock body_loading %}
   {% block body_script %}
@@ -47,6 +54,9 @@
           }
           {% endblock graphql_fetcher_headers %}
 
+            var footer = document.getElementsByClassName('footer');
+            footer = footer[0] || null;
+
           return fetch(endpoint, {
               method: "post",
               headers: headers,
@@ -54,11 +64,18 @@
               credentials: 'include',
             }).then((res) => {
               {% block post_fetch %}{% endblock post_fetch %}
+              footer.innerHTML = '';
               return res.text()
             }).then((body) => {
             try {
               return JSON.parse(body)
             } catch (err) {
+                if(typeof(body) === 'string'){
+                    if(footer){
+                        footer.innerHTML += body;
+                    }
+                    return '';
+                }
               return body
             }
           })
@@ -66,13 +83,31 @@
         }
 
       ReactDOM.render(
-        React.createElement(GraphiQL, {
-          {% block graphiql_params %}
-          fetcher: graphQLFetcher
-          {% endblock graphiql_params %}
-        }),
-        document.body
+        React.createElement(GraphiQL,
+            {
+                {% block graphiql_params %}
+                fetcher: graphQLFetcher
+                {% endblock graphiql_params %}
+            },
+            {%if logoPath is defined %}
+                React.createElement(
+                  GraphiQL.Logo,
+                  {},
+                  React.createElement(
+                      'img',
+                      {src:"{{ logoPath }}" }
+                  )
+              ),
+            {% endif %}
+            React.createElement(
+                GraphiQL.Footer,
+                {},
+                ''
+            )
+        ),
+        document.getElementById('root')
       )
+
     </script>
   {% endblock body_script %}
 {% endblock body %}
