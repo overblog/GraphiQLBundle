@@ -13,7 +13,7 @@ class OverblogGraphiQLExtension extends Extension
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
@@ -37,7 +37,7 @@ class OverblogGraphiQLExtension extends Extension
         ]);
     }
 
-    public function getAlias()
+    public function getAlias(): string
     {
         return 'overblog_graphiql';
     }
@@ -45,7 +45,7 @@ class OverblogGraphiQLExtension extends Extension
     /**
      * {@inheritdoc}
      */
-    public function getXsdValidationBasePath()
+    public function getXsdValidationBasePath(): string
     {
         return __DIR__.'/../Resources/config/schema';
     }
@@ -53,7 +53,7 @@ class OverblogGraphiQLExtension extends Extension
     /**
      * {@inheritdoc}
      */
-    public function getNamespace()
+    public function getNamespace(): string
     {
         return 'http://over-blog.com/schema/dic/overblog_graphiql';
     }

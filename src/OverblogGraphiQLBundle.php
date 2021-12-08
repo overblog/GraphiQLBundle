@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 final class OverblogGraphiQLBundle extends Bundle
 {
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container) : void
     {
         parent::build($container);
 
@@ -22,12 +22,8 @@ final class OverblogGraphiQLBundle extends Bundle
         $container->addCompilerPass(new DefaultEndpointWiringPass());
     }
 
-    public function getContainerExtension()
+    public function getContainerExtension() : ?ExtensionInterface
     {
-        if (!$this->extension instanceof ExtensionInterface) {
-            $this->extension = new OverblogGraphiQLExtension();
-        }
-
-        return $this->extension;
+        return new OverblogGraphiQLExtension();
     }
 }

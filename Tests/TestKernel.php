@@ -14,21 +14,15 @@ abstract class TestKernel extends Kernel
         parent::__construct($environment, $debug);
     }
 
-    public function getCacheDir()
+    public function getCacheDir(): string
     {
         return sys_get_temp_dir().'/OverblogGraphQLBundle/'.Kernel::VERSION.'/'.$this->testCase.'/cache/'.$this->environment;
     }
 
-    public function getLogDir()
+    public function getLogDir(): string
     {
         return sys_get_temp_dir().'/OverblogGraphQLBundle/'.Kernel::VERSION.'/'.$this->testCase.'/logs';
     }
-
-    public function getRootDir()
-    {
-        return __DIR__;
-    }
-
     public function isBooted()
     {
         return $this->booted;

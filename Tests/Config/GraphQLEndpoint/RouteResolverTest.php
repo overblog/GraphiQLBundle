@@ -4,6 +4,7 @@ namespace Overblog\GraphiQLBundle\Tests\Config\GraphQLEndpoint;
 
 use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\GraphQLEndpointInvalidSchemaException;
 use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\RouteResolver;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -11,12 +12,12 @@ use Symfony\Component\Routing\RouterInterface;
 
 final class RouteResolverTest extends TestCase
 {
-    /** @var RouterInterface|ObjectProphecy */
+    /** @var RouterInterface|MockObject */
     protected $router;
 
-    public function setUp()
+    public function setUp(): void
     {
-        $this->router = $this->prophesize(RouterInterface::class);
+        $this->router = $this->createMock(RouterInterface::class);
     }
 
     /**
@@ -27,7 +28,7 @@ final class RouteResolverTest extends TestCase
     private function subject(array $routeCollection)
     {
         return new RouteResolver(
-            $this->router->reveal(),
+            $this->router,
             $routeCollection
         );
     }
@@ -44,8 +45,14 @@ final class RouteResolverTest extends TestCase
 
     public function testArrayRoutes()
     {
-        $this->router->generate(Argument::exact('route_schema_default'))->willReturn('/');
-        $this->router->generate(Argument::exact('route_schema_star_wars'))->willReturn('/star-wars');
+        $this->router->expects($this->exactly(3))
+            ->method('generate')
+            ->withConsecutive(
+                ['route_schema_default'],
+                ['route_schema_default'],
+                ['route_schema_star_wars']
+            )
+            ->willReturnOnConsecutiveCalls('/', '/', '/star-wars');
 
         $routeCollection = [
             'default' => ['route_schema_default'],

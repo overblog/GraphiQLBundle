@@ -10,7 +10,7 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 final class TestKernel extends AbstractTestKernel
 {
-    public function registerBundles()
+    public function registerBundles(): array
     {
         return [
             new FrameworkBundle(),
