@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - "*.*"
+      - master
+  push:
+    branches:
+      - "*.*"
+      - master
+
+jobs:
+  tests:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version:
+          - '8.0'
+          - '8.1'
+        symfony-version:
+          - '5.3.*'
+          - '5.4.*'
+          - '6.0.*'
+        dependencies:
+          - 'lowest'
+          - 'highest'
+        remove-dependencies: [ '' ]
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          tools: flex
+          php-version: "${{ matrix.php-version }}"
+          coverage: "none"
+
+      - name: "Change stability"
+        if: "matrix.stability != ''"
+        run: perl -pi -e 's/^}$/,"minimum-stability":"'"${{ matrix.minimum-stability }}"'"}/' composer.json && cat composer.json
+
+      - name: "Webonyx GraphQL version"
+        if: "matrix.graphql-version != ''"
+        run: composer require "webonyx/graphql-php:${{ matrix.graphql-version }}" --dev --no-update
+
+      - name: Remove dependencies
+        if: "matrix.remove-dependencies != ''"
+        run: composer remove --no-update ${{ matrix.remove-dependencies }}
+
+      - name: "Install dependencies"
+        uses: ramsey/composer-install@1.3.0
+        with:
+          dependency-versions: ${{ matrix.dependencies }}
+        env:
+          SYMFONY_REQUIRE: "${{ matrix.symfony-version }}"
+
+      - name: "Run tests"
+        run: composer test
+
+  coding-standard:
+    runs-on: ubuntu-20.04
+    name: Coding Standard
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          tools: flex
+          php-version: "8.0"
+
+      - name: "Install dependencies"
+        uses: ramsey/composer-install@1.3.0
+
+      - name: "Check coding standard"
+        run: composer check-cs

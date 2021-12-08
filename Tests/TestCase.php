@@ -4,6 +4,7 @@ namespace Overblog\GraphiQLBundle\Tests;
 
 use Overblog\GraphiQLBundle\Tests\Fixtures\TestKernel;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 abstract class TestCase extends WebTestCase
 {
@@ -21,7 +22,7 @@ abstract class TestCase extends WebTestCase
     /**
      * {@inheritdoc}
      */
-    protected static function createKernel(array $options = [])
+    protected static function createKernel(array $options = []): KernelInterface
     {
         static::$class = static::getKernelClass();
 

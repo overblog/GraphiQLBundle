@@ -4,6 +4,7 @@ namespace Overblog\GraphiQLBundle\Tests\Integration\OverblogGraphQLBundle;
 
 use Overblog\GraphiQLBundle\Tests\Integration\OverblogGraphQLBundle\Fixtures\TestKernel;
 use Overblog\GraphiQLBundle\Tests\TestCase as AbstractTestCase;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 abstract class TestCase extends AbstractTestCase
 {
@@ -15,7 +16,7 @@ abstract class TestCase extends AbstractTestCase
         return TestKernel::class;
     }
 
-    protected static function createKernel(array $options = [])
+    protected static function createKernel(array $options = []): KernelInterface
     {
         $options['test_case'] = 'Integration_OverblogGraphQLBundle';
 
