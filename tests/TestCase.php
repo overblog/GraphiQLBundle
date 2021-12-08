@@ -14,7 +14,7 @@ abstract class TestCase extends WebTestCase
     /**
      * {@inheritdoc}
      */
-    protected static function getKernelClass() : string
+    protected static function getKernelClass(): string
     {
         return TestKernel::class;
     }

@@ -14,7 +14,7 @@
 
     <testsuites>
         <testsuite name="OverblogGraphiQLBundle Test Suite">
-            <directory>./tests/</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
 </phpunit>

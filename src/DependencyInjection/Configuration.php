@@ -39,7 +39,6 @@ final class Configuration implements ConfigurationInterface
     }
 
     /**
-     * @param TreeBuilder $builder
      * @param string|null $name
      * @param string      $type
      *
