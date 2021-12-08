@@ -6,8 +6,6 @@ use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\GraphQLEndpointInvalidSchemaE
 use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\RouteResolver;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
-use Prophecy\Prophecy\ObjectProphecy;
 use Symfony\Component\Routing\RouterInterface;
 
 final class RouteResolverTest extends TestCase
@@ -21,8 +19,6 @@ final class RouteResolverTest extends TestCase
     }
 
     /**
-     * @param array $routeCollection
-     *
      * @return RouteResolver
      */
     private function subject(array $routeCollection)

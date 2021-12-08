@@ -23,6 +23,7 @@ abstract class TestKernel extends Kernel
     {
         return sys_get_temp_dir().'/OverblogGraphQLBundle/'.Kernel::VERSION.'/'.$this->testCase.'/logs';
     }
+
     public function isBooted()
     {
         return $this->booted;

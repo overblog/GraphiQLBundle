@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class GraphiQLControllerTest extends TestCase
 {
-    public function testInvalidSchema() : void
+    public function testInvalidSchema(): void
     {
         $client = static::createClient();
 
@@ -18,7 +18,7 @@ final class GraphiQLControllerTest extends TestCase
         $this->assertSame(500, $response->getStatusCode());
     }
 
-    public function testDefaultSchema() : void
+    public function testDefaultSchema(): void
     {
         $client = static::createClient();
 
@@ -30,7 +30,7 @@ final class GraphiQLControllerTest extends TestCase
         $this->stringContains('Loading...', $response->getContent());
     }
 
-    public function testDefaultSchemaViaMultipleRoute() : void
+    public function testDefaultSchemaViaMultipleRoute(): void
     {
         $client = static::createClient();
 
