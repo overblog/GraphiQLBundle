@@ -2,9 +2,7 @@ framework:
     test: ~
     secret: test
     router:
-        resource: "%kernel.root_dir%/../Resources/config/routing.xml"
-    templating:
-        engines: ['twig']
+        resource: "%kernel.project_dir%/Resources/config/routing.xml"
     profiler:
         enabled: false
     assets:

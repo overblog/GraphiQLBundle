@@ -7,12 +7,12 @@ use Overblog\GraphiQLBundle\Tests\TestCase;
 
 final class ConfigurationTest extends TestCase
 {
-    protected static function getKernelClass()
+    protected static function getKernelClass(): string
     {
         return TestKernel::class;
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         static::bootKernel(['test_case' => str_replace('\\', '_', __NAMESPACE__)]);
     }

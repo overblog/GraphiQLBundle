@@ -7,12 +7,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 abstract class TestCase extends WebTestCase
 {
-    use ForwardCompatTestCaseTrait;
+    /** @var TestKernel[] */
+    private static $kernels = [];
 
     /**
      * {@inheritdoc}
      */
-    protected static function getKernelClass()
+    protected static function getKernelClass() : string
     {
         return TestKernel::class;
     }
@@ -22,15 +23,19 @@ abstract class TestCase extends WebTestCase
      */
     protected static function createKernel(array $options = [])
     {
-        if (null === static::$class) {
-            static::$class = static::getKernelClass();
-        }
+        static::$class = static::getKernelClass();
 
         $options['test_case'] = isset($options['test_case']) ? $options['test_case'] : 'default';
 
         $env = isset($options['environment']) ? $options['environment'] : 'overbloggraphibundletest'.strtolower($options['test_case']);
         $debug = isset($options['debug']) ? $options['debug'] : true;
 
-        return new static::$class($env, $debug, $options['test_case']);
+        $kernelKey = '//'.$env.'//'.var_export($debug, true);
+
+        if (!isset(self::$kernels[$kernelKey])) {
+            self::$kernels[$kernelKey] = new static::$class($env, $debug, $options['test_case']);
+        }
+
+        return self::$kernels[$kernelKey];
     }
 }

@@ -13,11 +13,8 @@
     <framework:config
             secret="secret"
             test="true">
-        <framework:router resource="%kernel.root_dir%/app/config/routing.xml" />
+        <framework:router resource="%kernel.project_dir%/app/config/routing.xml" />
         <framework:profiler enabled="false" />
-        <framework:templating>
-            <framework:engine>twig</framework:engine>
-        </framework:templating>
     </framework:config>
 
     <overblog_graphiql:config/>

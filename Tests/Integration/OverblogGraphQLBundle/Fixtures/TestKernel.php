@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class TestKernel extends AbstractTestKernel
 {
-    public function registerBundles()
+    public function registerBundles(): array
     {
         return [
             new FrameworkBundle(),
@@ -31,7 +31,6 @@ final class TestKernel extends AbstractTestKernel
             $container->loadFromExtension('framework', [
                 'secret' => 'test',
                 'test' => true,
-                'templating' => ['engine' => ['twig']],
                 'assets' => ['enabled' => false],
                 'router' => [
                     'resource' => __DIR__.'/Resources/config/routing.xml',
