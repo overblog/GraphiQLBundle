@@ -14,7 +14,7 @@ Just set the `overblog_graphiql.endpoint_resolver` parameter like this:
 ```yaml
 # in app/config/config.yml
 overblog_graphiql:
-    ....
+    # ...
     endpoint_resolver: \App\GraphiQL\EndpointResolver
 ```
 
