@@ -65,6 +65,7 @@
           {% endblock fetcher_function_body %}
         }
 
+      {% block graphiql_render %}
       ReactDOM.render(
         React.createElement(GraphiQL, {
           {% block graphiql_params %}
@@ -73,6 +74,7 @@
         }),
         document.body
       )
+      {% endblock graphiql_render %}
     </script>
   {% endblock body_script %}
 {% endblock body %}

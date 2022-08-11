@@ -86,6 +86,7 @@ More
 ------------
 
 * [Custom HTTP headers](docs/custom-http-headers.md)
+* [Custom page rendering](docs/custom-rendering.md)
 * [Custom GraphiQL parameters](docs/custom-parameters.md)
 * [Define JavaScript libraries' versions](docs/libraries-versions.md)
 * [Define a custom GraphQL endpoint](docs/graphql-endpoint.md)
