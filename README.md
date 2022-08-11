@@ -85,10 +85,10 @@ It's done now, navigate to `/graphiql` in your project url
 More
 ------------
 
-* [Custom HTTP headers](Resources/doc/custom-http-headers.md)
-* [Custom GraphiQL parameters](Resources/doc/custom-parameters.md)
-* [Define JavaScript libraries' versions](Resources/doc/libraries-versions.md)
-* [Define a custom GraphQL endpoint](Resources/doc/graphql-endpoint.md)
+* [Custom HTTP headers](docs/custom-http-headers.md)
+* [Custom GraphiQL parameters](docs/custom-parameters.md)
+* [Define JavaScript libraries' versions](docs/libraries-versions.md)
+* [Define a custom GraphQL endpoint](docs/graphql-endpoint.md)
 
 Community
 ---------
