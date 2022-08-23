@@ -29,40 +29,16 @@ You have to override block `graphiql_render` and soon of all you have to overrid
 {% endblock graphiql_render %}
 ```
 
-### Example: add "X-Auth-Token" field and header
+### Example
 
-```twig
-{# templates/GraphiQL/index.html.twig #}
-{% extends '@OverblogGraphiQL/GraphiQL/index.html.twig' %}
+See template [@OverblogGraphiQL/GraphiQL/auth.html.twig](../src/Resources/views/GraphiQL/auth.html.twig). How it looks like:
 
-{% block graphql_fetcher_headers %}
-    {{ parent() }}
+![This is an image](auth-token.png)
 
-    let token = document.getElementById('x_header_value').value;
-    if (token) {
-        headers['X-Auth-Token'] = token;
-    }
-{% endblock graphql_fetcher_headers %}
+There is:
 
-{% block graphiql_render %}
-    ReactDOM.render(
-        React.createElement('div', { style: { height: '100%' } },
-            React.createElement('div', { style: { background: '#f6f6f6', padding: '5px 15px' }, },
-                React.createElement('label', { htmlFor: 'x_header_value' }, 'X-Auth-Token: '),
-                React.createElement('input', {
-                    id: 'x_header_value',
-                    type: 'text',
-                    placeholder: 'Set token',
-                }),
-            ),
-            React.createElement(GraphiQL, {
-                fetcher: graphQLFetcher
-            }),
-        ),
-        document.body,
-    );
-{% endblock graphiql_render %}
-```
-How this looks like:
+1. Header used for the authorization.
+2. Header value (token) for the authorization.
+3. Button to load schema when the header value (token) typed.
 
-![This is an image](x-auth-token.png)
+So, you can extend base template [@OverblogGraphiQL/GraphiQL/index.html.twig](../src/Resources/views/GraphiQL/index.html.twig) or use that.
