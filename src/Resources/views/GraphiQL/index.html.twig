@@ -34,7 +34,7 @@
   {% block body_loading %}Loading...{% endblock body_loading %}
   {% block body_script %}
     <script>
-      var endpoint = {{ endpoint | json_encode | raw }}
+      var endpoint = {{ endpoint | json_encode | raw }};
 
         function graphQLFetcher(params) {
           {% block fetcher_function_body %}
@@ -42,13 +42,13 @@
 
           {% block graphql_fetcher_headers %}
           headers = {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
           }
           {% endblock graphql_fetcher_headers %}
 
           return fetch(endpoint, {
-              method: "post",
+              method: 'post',
               headers: headers,
               body: JSON.stringify(params),
               credentials: 'include',
@@ -65,6 +65,7 @@
           {% endblock fetcher_function_body %}
         }
 
+      {% block graphiql_render %}
       ReactDOM.render(
         React.createElement(GraphiQL, {
           {% block graphiql_params %}
@@ -73,6 +74,7 @@
         }),
         document.body
       )
+      {% endblock graphiql_render %}
     </script>
   {% endblock body_script %}
 {% endblock body %}

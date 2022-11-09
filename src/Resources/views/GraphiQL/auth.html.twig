@@ -1,0 +1,73 @@
+{% extends '@OverblogGraphiQL/GraphiQL/index.html.twig' %}
+
+{% block style %}
+    {{ parent() }}
+    <style>
+        .x-header {
+            padding: 2px 4px;
+        }
+    </style>
+{% endblock %}
+
+{% block graphql_fetcher_headers %}
+    {{ parent() }}
+
+    {% block graphql_fetcher_headers_extra %}
+        let headerName = document.getElementById('x_header_name').value;
+        let token = getToken() || document.token || null;
+        if (headerName && token) {
+            headers[headerName] = token;
+        }
+    {% endblock graphql_fetcher_headers_extra %}
+{% endblock graphql_fetcher_headers %}
+
+{% block graphiql_render %}
+    let getToken = function () {
+        let field = document.getElementById('x_header_value');
+        return field ? field.value : null;
+    };
+    let renderPage = function () {
+        ReactDOM.render(
+            React.createElement('div', {style: {height: '100%'}},
+                React.createElement('div', {style: {background: '#f6f6f6', padding: '5px 15px'}},
+                    React.createElement('select', {
+                            id: 'x_header_name',
+                            className: 'x-header',
+                            style: {height: '24px'},
+                            title: 'Header used for the authorization',
+                        },
+                        React.createElement('option', {value: 'Authorization'}, 'Authorization'),
+                        React.createElement('option', {value: 'X-Auth-Token'}, 'X-Auth-Token'),
+                    ),
+                    React.createElement('input', {
+                        id: 'x_header_value',
+                        type: 'text',
+                        className: 'x-header',
+                        placeholder: 'Set token (usually add prefix "Bearer" for "Authorization" header)',
+                        style: {height: '16px', width: '400px'},
+                        title: 'Header value (token) for the authorization',
+                        value: getToken() || document.token || null,
+                    }),
+                    React.createElement('button', {
+                            className: 'x-header',
+                            onClick: () => {
+                                document.token = getToken();
+                                document.body.innerHTML = '';
+                                document.body.outerHTML = 'Loading...';
+                                renderPage();
+                            },
+                            style: {height: '24px'},
+                            title: 'Click the button to load schema when the token specified',
+                        },
+                        'Reload schema',
+                    ),
+                ),
+                React.createElement(GraphiQL, {
+                    fetcher: graphQLFetcher
+                }),
+            ),
+            document.body,
+        );
+    };
+    renderPage();
+{% endblock graphiql_render %}
