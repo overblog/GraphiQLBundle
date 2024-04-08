@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 final class OverblogGraphQLBundleEndpointWiringPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $bundles = $container->getParameter('kernel.bundles_metadata');
 
