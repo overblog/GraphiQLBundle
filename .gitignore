@@ -6,6 +6,6 @@ phpunit.xml
 composer.lock
 composer.phar
 .php_cs.cache
-.php_cs
+.php-cs-fixer.cache
 php-cs-fixer.phar
 /.phpunit.result.cache
