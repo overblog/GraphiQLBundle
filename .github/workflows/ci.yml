@@ -12,24 +12,38 @@ on:
 
 jobs:
   tests:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
         php-version:
           - '8.0'
           - '8.1'
+          - '8.2'
+          - '8.3'
         symfony-version:
-          - '5.3.*'
           - '5.4.*'
-          - '6.0.*'
+          - '6.4.*'
         dependencies:
           - 'lowest'
           - 'highest'
         remove-dependencies: [ '' ]
+        include:
+          - php-version: '8.2'
+            symfony-version: '7.0.*'
+            dependencies: 'highest'
+            remove-dependencies: 'sensio/framework-extra-bundle'
+          - php-version: '8.3'
+            symfony-version: '7.0.*'
+            dependencies: 'highest'
+            remove-dependencies: 'sensio/framework-extra-bundle'
+        exclude:
+          - php-version: '8.0'
+            symfony-version: '6.4.*'
+
     steps:
       - name: "Checkout"
-        uses: "actions/checkout@v2"
+        uses: "actions/checkout@v4"
 
       - name: "Install PHP"
         uses: "shivammathur/setup-php@v2"
@@ -48,10 +62,10 @@ jobs:
 
       - name: Remove dependencies
         if: "matrix.remove-dependencies != ''"
-        run: composer remove --no-update ${{ matrix.remove-dependencies }}
+        run: composer remove --dev --no-update ${{ matrix.remove-dependencies }}
 
       - name: "Install dependencies"
-        uses: ramsey/composer-install@1.3.0
+        uses: ramsey/composer-install@3.0.0
         with:
           dependency-versions: ${{ matrix.dependencies }}
         env:
@@ -61,20 +75,20 @@ jobs:
         run: composer test
 
   coding-standard:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     name: Coding Standard
     steps:
       - name: "Checkout"
-        uses: "actions/checkout@v2"
+        uses: "actions/checkout@v4"
 
       - name: "Install PHP"
         uses: "shivammathur/setup-php@v2"
         with:
           tools: flex
-          php-version: "8.0"
+          php-version: "8.3"
 
       - name: "Install dependencies"
-        uses: ramsey/composer-install@1.3.0
+        uses: ramsey/composer-install@3.0.0
 
       - name: "Check coding standard"
         run: composer check-cs
