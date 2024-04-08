@@ -56,7 +56,7 @@
     },
     "scripts": {
         "test": "bin/phpunit --color=always",
-        "install-cs": "test -f php-cs-fixer.phar || wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.18.7/php-cs-fixer.phar -O php-cs-fixer.phar",
+        "install-cs": "test -f php-cs-fixer.phar || wget https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/releases/download/v3.53.0/php-cs-fixer.phar -O php-cs-fixer.phar",
         "fix-cs": [
             "@install-cs",
             "@php php-cs-fixer.phar fix --diff -v --allow-risky=yes --ansi"

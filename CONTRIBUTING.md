@@ -7,13 +7,13 @@ Running tests
 In the bundle directory:
 
 ```bash
-./vendor/bin/phpunit
+./bin/phpunit
 ```
 
 Giving some love to PHP CS
 ---------------------------
 
 ```bash
-composer require --dev 'friendsofphp/php-cs-fixer:^2.0'
+composer require --dev 'friendsofphp/php-cs-fixer:^3.53'
 bin/php-cs-fixer fix
 ```

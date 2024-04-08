@@ -1,21 +1,21 @@
 <?php
 
-$finder = PhpCsFixer\Finder::create()
+$finder = (new PhpCsFixer\Finder())
     ->exclude('vendor')
     ->name('*.php')
     ->in(__DIR__)
 ;
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRules(
         [
             '@Symfony' => true,
-            'single_blank_line_before_namespace' => true,
             'ordered_imports' => true,
             'concat_space' => ['spacing' => 'none'],
-            'phpdoc_no_alias_tag' => ['type' => 'var'],
+            'phpdoc_no_alias_tag' => ['replacements' => ['type' => 'var']],
             'no_mixed_echo_print' => ['use' => 'echo'],
-            'binary_operator_spaces' => ['align_double_arrow' => false, 'align_equals' => false],
+            'binary_operator_spaces' => ['operators' => ['=>' => 'single_space', '=' => 'single_space']],
+            'no_superfluous_phpdoc_tags' => false,
         ]
     )
     ->setFinder($finder)
