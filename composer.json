@@ -22,9 +22,9 @@
     },
     "require": {
         "php": "^8.0",
-        "symfony/http-foundation": "^5.3.7 || ^6.0",
-        "symfony/twig-bundle": "^5.3.7 || ^6.0",
-        "symfony/routing": "^5.3.7 || ^6.0"
+        "symfony/http-foundation": "^5.3.7 || ^6.0 || ^7.0",
+        "symfony/routing": "^5.3.7 || ^6.0 || ^7.0",
+        "symfony/twig-bundle": "^5.3.7 || ^6.0 || ^7.0"
     },
     "require-dev": {
         "overblog/graphql-bundle": "dev-master",
