@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphiQLBundle\DependencyInjection;
 
 use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\Helpers\OverblogGraphQLBundleEndpointResolver;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+
+use function method_exists;
 
 final class Configuration implements ConfigurationInterface
 {
@@ -47,6 +51,6 @@ final class Configuration implements ConfigurationInterface
     private static function getRootNodeWithoutDeprecation(TreeBuilder $builder, $name, $type = 'array')
     {
         // BC layer for symfony/config 4.1 and older
-        return \method_exists($builder, 'getRootNode') ? $builder->getRootNode() : $builder->root($name, $type);
+        return method_exists($builder, 'getRootNode') ? $builder->getRootNode() : $builder->root($name, $type);
     }
 }

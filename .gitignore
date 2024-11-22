@@ -1,11 +1,13 @@
-.idea
 phpunit.xml
 /build
 /vendor
 /bin
 composer.lock
 composer.phar
-.php_cs.cache
-.php_cs
+/.php-cs-fixer.php
+/*.cache
+
+phpbench.phar
+phpbench.phar.*
+/.phpbench_storage
 php-cs-fixer.phar
-/.phpunit.result.cache

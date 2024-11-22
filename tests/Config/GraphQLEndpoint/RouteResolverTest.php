@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphiQLBundle\Tests\Config\GraphQLEndpoint;
 
 use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\GraphQLEndpointInvalidSchemaException;
@@ -29,7 +31,7 @@ final class RouteResolverTest extends TestCase
         );
     }
 
-    public function testInvalidRoute()
+    public function testInvalidRoute(): void
     {
         $routeResolver = $this->subject([]);
 
@@ -39,7 +41,7 @@ final class RouteResolverTest extends TestCase
         $routeResolver->getDefault();
     }
 
-    public function testArrayRoutes()
+    public function testArrayRoutes(): void
     {
         $this->router->expects($this->exactly(3))
             ->method('generate')

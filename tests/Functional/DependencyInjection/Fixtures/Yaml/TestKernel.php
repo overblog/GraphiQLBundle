@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphiQLBundle\Tests\Functional\DependencyInjection\Fixtures\Yaml;
 
 use Overblog\GraphiQLBundle\OverblogGraphiQLBundle;
@@ -22,7 +24,7 @@ final class TestKernel extends AbstractTestKernel
     /**
      * {@inheritdoc}
      */
-    public function registerContainerConfiguration(LoaderInterface $loader)
+    public function registerContainerConfiguration(LoaderInterface $loader): void
     {
         $loader->load(__DIR__.'/config.yml');
     }

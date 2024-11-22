@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphiQLBundle\Controller;
 
 use Overblog\GraphiQLBundle\Config\GraphiQLControllerEndpoint;

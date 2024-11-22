@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphiQLBundle\Tests\Integration\OverblogGraphQLBundle;
 
 use Overblog\GraphiQLBundle\Tests\Integration\OverblogGraphQLBundle\Fixtures\TestKernel;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphiQLBundle\Tests\Fixtures;
 
 use Overblog\GraphiQLBundle\OverblogGraphiQLBundle;
@@ -23,9 +25,9 @@ final class TestKernel extends AbstractTestKernel
     /**
      * {@inheritdoc}
      */
-    public function registerContainerConfiguration(LoaderInterface $loader)
+    public function registerContainerConfiguration(LoaderInterface $loader): void
     {
-        $loader->load(function (ContainerBuilder $container) {
+        $loader->load(function (ContainerBuilder $container): void {
             $container->loadFromExtension('framework', [
                 'secret' => 'test',
                 'test' => true,

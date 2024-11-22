@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphiQLBundle\Tests\Config\GraphQLEndpoint\Helpers;
 
 use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\Helpers\OverblogGraphQLBundleEndpointResolver;
@@ -7,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 final class OverblogGraphQLBundleEndpointResolverTest extends TestCase
 {
-    public function testGetDefaultRoute()
+    public function testGetDefaultRoute(): void
     {
         $defaultRoute = OverblogGraphQLBundleEndpointResolver::getByName('default');
         $this->assertSame(['overblog_graphql_endpoint'], $defaultRoute);
@@ -16,7 +18,7 @@ final class OverblogGraphQLBundleEndpointResolverTest extends TestCase
     /**
      * @dataProvider getSchemas
      */
-    public function testGetWithSchemaName($schemaName, $expectedResult)
+    public function testGetWithSchemaName($schemaName, $expectedResult): void
     {
         $route = OverblogGraphQLBundleEndpointResolver::getByName($schemaName);
         $this->assertSame($expectedResult, $route);

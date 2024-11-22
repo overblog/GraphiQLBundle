@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphiQLBundle\Config\GraphQLEndpoint\Helpers;
 
 final class OverblogGraphQLBundleEndpointResolver

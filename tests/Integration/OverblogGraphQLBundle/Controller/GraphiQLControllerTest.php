@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphQLBundle\Tests\Integration\OverblogGraphQLBundle\Controller;
 
 use Overblog\GraphiQLBundle\Tests\Integration\OverblogGraphQLBundle\TestCase;
@@ -7,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class GraphiQLControllerTest extends TestCase
 {
-    public function testDefaultSchema()
+    public function testDefaultSchema(): void
     {
         $client = static::createClient();
 

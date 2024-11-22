@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphiQLBundle\Tests\Config\GraphQLEndpoint;
 
 use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\GraphQLEndpointInvalidSchemaException;
@@ -16,7 +18,7 @@ final class RootResolverTest extends TestCase
         return new RootResolver();
     }
 
-    public function testInvalidSchema()
+    public function testInvalidSchema(): void
     {
         $rootResolver = $this->subject();
 
@@ -26,7 +28,7 @@ final class RootResolverTest extends TestCase
         $rootResolver->getBySchema('any');
     }
 
-    public function testDefaultSchema()
+    public function testDefaultSchema(): void
     {
         $rootResolver = $this->subject();
 
