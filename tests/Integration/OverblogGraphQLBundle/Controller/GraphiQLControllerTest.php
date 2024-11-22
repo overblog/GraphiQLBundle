@@ -18,7 +18,7 @@ final class GraphiQLControllerTest extends TestCase
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
-        $this->stringContains('Loading...', $response->getContent());
-        $this->stringContains('var endpoint = "\/"', $response->getContent());
+        $this->assertStringContainsString('Loading...', $response->getContent());
+        $this->assertStringContainsString('var endpoint = "\/"', $response->getContent());
     }
 }
