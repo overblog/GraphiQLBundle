@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphiQLBundle\Tests;
 
 use Symfony\Component\HttpKernel\Kernel;

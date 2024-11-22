@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphiQLBundle\DependencyInjection\Compiler\Endpoints;
 
 use Overblog\GraphiQLBundle\Config\GraphQLEndpoint\RouteResolver;
@@ -9,7 +11,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 final class OverblogGraphQLBundleEndpointWiringPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $bundles = $container->getParameter('kernel.bundles_metadata');
 

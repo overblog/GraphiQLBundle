@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphiQLBundle\Tests\Functional\DependencyInjection\Xml;
 
 use Overblog\GraphiQLBundle\Tests\Functional\DependencyInjection\Fixtures\Xml\TestKernel;
@@ -17,7 +19,7 @@ final class ConfigurationTest extends TestCase
         static::bootKernel(['test_case' => str_replace('\\', '_', __NAMESPACE__)]);
     }
 
-    public function testSuccessConfiguration()
+    public function testSuccessConfiguration(): void
     {
         /** @var TestKernel $kernel */
         $kernel = static::$kernel;

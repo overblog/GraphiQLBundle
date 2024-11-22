@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphiQLBundle\Tests;
 
 use Overblog\GraphiQLBundle\Tests\Fixtures\TestKernel;
@@ -26,10 +28,10 @@ abstract class TestCase extends WebTestCase
     {
         static::$class = static::getKernelClass();
 
-        $options['test_case'] = isset($options['test_case']) ? $options['test_case'] : 'default';
+        $options['test_case'] ??= 'default';
 
-        $env = isset($options['environment']) ? $options['environment'] : 'overbloggraphibundletest'.strtolower($options['test_case']);
-        $debug = isset($options['debug']) ? $options['debug'] : true;
+        $env = $options['environment'] ?? 'overbloggraphibundletest'.strtolower($options['test_case']);
+        $debug = $options['debug'] ?? true;
 
         $kernelKey = '//'.$env.'//'.var_export($debug, true);
 

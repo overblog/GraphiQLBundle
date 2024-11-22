@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Overblog\GraphQLBundle\Tests\Controller;
 
 use Overblog\GraphiQLBundle\Tests\TestCase;
@@ -27,7 +29,7 @@ final class GraphiQLControllerTest extends TestCase
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode(), $response->getContent());
-        $this->stringContains('Loading...', $response->getContent());
+        $this->assertStringContainsString('Loading...', $response->getContent());
     }
 
     public function testDefaultSchemaViaMultipleRoute(): void
@@ -39,6 +41,6 @@ final class GraphiQLControllerTest extends TestCase
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
-        $this->stringContains('Loading...', $response->getContent());
+        $this->assertStringContainsString('Loading...', $response->getContent());
     }
 }
